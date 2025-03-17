@@ -1,0 +1,42 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import PFRLogoOutline from "./PFRLogoOutline.astro";
+import WaveDivider from "./WaveDivider.astro";
+---
+
+<WaveDivider selectedColor="fill-base-100" />
+<section id="whyitathreat" class="bg-base-100">
+  <Container width="marginxy">
+    <div class="relative flex flex-col md:flex-row items-center gap-4">
+      <div>
+        <Heading size="md">Why is it a threat</Heading>
+        <Paragraph class="mb-5">
+          India boasts a rich and diverse range of freshwater fish species, due
+          to its varied climatic zones, river systems, and unique landscapes.
+          The country&apos;s freshwater fish diversity is not only significant
+          in terms of species count but also in the ecological and economic
+          value they hold.
+        </Paragraph>
+        <Paragraph class="mb-5">
+          India is home to over <b> 900 species of freshwater fishes,</b>{" "}
+          many of which are <b>endemic</b> to the subcontinent, meaning{" "}
+          <b>they are found nowhere else in the world.</b>
+        </Paragraph>
+        <Paragraph class="mb-5">
+          Invasive fish, with established reproductive populations in Rivers,
+          threaten the existence of native species, which are already under the
+          risk of extinction, due to various human activities. (create an
+          animated video here to visually show population explosion).
+        </Paragraph>
+      </div>
+      <PFRLogoOutline class="hidden lg:block lg:min-w-64" />
+      <PFRLogoOutline
+        class="w-full absolute -top-14 opacity-10 block lg:hidden"
+      />
+    </div>
+  </Container>
+</section>
+
+<!-- <WaveDivider selectedColor="fill-base-200" class="z-10" /> -->

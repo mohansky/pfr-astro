@@ -1,0 +1,29 @@
+--- 
+import Heading from "./Heading.astro"; 
+import HeroDogImage from "./HeroDogImage.astro";
+import HeroCatImage from "./HeroCatImage.astro";
+import HeroPaws from "./HeroPaws.astro";
+---
+
+<div class="hero min-w-screen min-h-screen relative">
+  <HeroCatImage />
+  <HeroDogImage />
+  <HeroPaws />
+
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-neutral-content z-10">
+    <div class="max-w-2xl space-y-3">
+      <Heading size="xxxl" fontstyle="serif">Paws for Rivers</Heading>
+
+      <Heading
+        size="xl"
+        fontstyle="sans"
+        fontweight="light"
+        class="text-balance"
+      >
+        Eco-Friendly, Nutritious and Sustainable Pet Food
+      </Heading>
+      <button class="btn btn-warning btn-lg uppercase">Contact</button>
+    </div>
+  </div>
+</div>

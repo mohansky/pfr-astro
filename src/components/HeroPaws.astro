@@ -1,0 +1,53 @@
+---
+import PFRLogoOutline from "./PFRLogoOutline.astro";
+---
+
+<ul class="example relative w-[90vw] h-full">
+  <li class="opacity-0 w-10 absolute bottom-0 right-0">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-20 right-15">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-40 right-0">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-60 right-15">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-80 right-0">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-100 right-15">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-120 right-0">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-140 right-15">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-160 right-0">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+  <li class="opacity-0 w-10 absolute bottom-180 right-15">
+    <PFRLogoOutline class="stroke-info" />
+  </li>
+</ul>
+<script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"
+></script>
+
+<script type="module">
+  const { animate, stagger, spring } = Motion;
+  animate(
+    ".example li",
+    {
+      opacity: 1,
+      y: [-20, 0],
+      scale: [0.5, 1],
+    },
+    {
+      delay: stagger(0.55),
+    }
+  );
+</script>

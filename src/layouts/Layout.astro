@@ -1,0 +1,210 @@
+---
+import "@/styles/global.css";
+import Background from "../components/Background.astro";
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Theme localStorage -->
+    <script is:inline>
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "lofi");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+    </script>
+
+    <!-- Theme Changer  -->
+    <script>
+      import { themeChange } from "theme-change";
+      themeChange();
+    </script>
+
+    <!-- Schema.org -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `${site.title}`,
+        description: `${site.description}`,
+        image: `${site.ogImageURL}`,
+        url: `${site.basepath}`,
+        telephone: `${site.contact[0].text}`,
+        email: `${site.email}`,
+        itemListElement: [
+          {
+            "@type": "Product",
+            position: 1,
+            name: "Tilapia Bites",
+            description: "Premium pet treats made from Tilapia",
+            offers: {
+              "@type": "Offer",
+              price: "600",
+              priceCurrency: "INR",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: "600",
+                priceCurrency: "INR",
+                unitCode: "GRM",
+                unitText: "gram",
+                referenceQuantity: {
+                  "@type": "QuantitativeValue",
+                  value: "300",
+                  unitCode: "GRM",
+                  unitText: "gram",
+                },
+              },
+              availability: "https://schema.org/InStock",
+            },
+            image: "./images/treats/cat-treat.jpg",
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Origin",
+              value: "Africa",
+            },
+          },
+          {
+            "@type": "Product",
+            position: 2,
+            name: "Catfish Feast",
+            description: "Premium pet treats made from Catfish",
+            offers: {
+              "@type": "Offer",
+              price: "600",
+              priceCurrency: "INR",
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price: "600",
+                priceCurrency: "INR",
+                unitCode: "GRM",
+                unitText: "gram",
+                referenceQuantity: {
+                  "@type": "QuantitativeValue",
+                  value: "300",
+                  unitCode: "GRM",
+                  unitText: "gram",
+                },
+              },
+              availability: "https://schema.org/InStock",
+            },
+            image: "./images/treats/dog-treat.jpg",
+            additionalProperty: {
+              "@type": "PropertyValue",
+              name: "Origin",
+              value: "South America",
+            },
+          },
+        ],
+        starRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+        },
+        offers: {
+          "@type": "Offer",
+          price: "250",
+          priceCurrency: "INR",
+          availability: "https://schema.org/InStock",
+          validFrom: "2025-01-01",
+        },
+        review: {
+          "@type": "Review",
+          author: {
+            "@type": "Person",
+            name: "John Doe",
+          },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+          reviewBody: "Woof woof!",
+        },
+        sameAs: [
+          "https://www.facebook.com/pawsforrivers",
+          "https://www.instagram.com/pawsforrivers",
+          "https://www.tripadvisor.com/pawsforrivers",
+        ],
+      })}
+    />
+
+    <!-- DaisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+
+    <!-- Open Graph Meta Tags (for social sharing) -->
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta
+      property="og:image"
+      content={`${site.basepath}/images/open-graph-image.jpg`}
+    />
+    <meta property="og:url" content={`${site.basepath}/`} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={site.title} />
+    <meta name="twitter:description" content={site.description} />
+    <meta
+      name="twitter:image"
+      content={`${site.basepath}/images/twitter-image.jpg"`}
+    />
+
+    <!-- Canonical URL (prevents duplicate content issues) -->
+    <link rel="canonical" href={site.basepath} />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content={site.keywords.join(",")} />
+    <!-- Less important now but still used -->
+    <meta name="author" content={site.author.name} />
+  </head>
+  <body>
+    <Navbar links={site.links} />
+    <Background />
+    <slot />
+    <Footer
+      author={site.author}
+      footnote={site.footnote}
+      copyright={site.copyright}
+      links={site.links}
+      contact={site.contact}
+      socials={site.socials}
+    />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

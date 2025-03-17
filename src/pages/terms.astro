@@ -1,0 +1,111 @@
+---
+import Container from "@/components/Container.astro";
+import Heading from "@/components/Heading.astro";
+import Paragraph from "@/components/Paragraph.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="bg-white">
+    <Container width="marginxy">
+      <div>
+        <Heading size="xl" fontweight="bold" fontstyle="sans"
+          >Terms of Use</Heading
+        >
+        <Heading
+          size="xs"
+          fontweight="normal"
+          fontstyle="sans"
+          class="text-gray-600 mb-4"
+          >Last Updated: <span class="font-medium">
+            {
+              new Date().toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }</span
+          ></Heading
+        >
+        <Paragraph>
+          Welcome to Paws for Rivers! These Terms of Use ("Terms") govern your
+          access to and use of our website, products, and services. By using our
+          website, you agree to these Terms. If you do not agree, please do not
+          use our website.
+        </Paragraph>
+
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >1. Use of the Website</Heading
+        >
+        <Paragraph>
+          You must be at least 18 years old or have parental consent to use this
+          site.
+        </Paragraph>
+        <Paragraph>
+          You agree to use the site only for lawful purposes. We reserve the
+          right to suspend or terminate access to users who violate these Terms.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >2. Product Information & Purchases</Heading
+        >
+        <Paragraph>
+          We strive for accuracy, but we do not guarantee that all product
+          descriptions, pricing, or images are error-free.
+        </Paragraph>
+        <Paragraph>
+          Prices and availability are subject to change without notice. By
+          placing an order, you agree to provide accurate and complete
+          information.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >3. Intellectual Property</Heading
+        >
+        <Paragraph>
+          All content on this website (logos, text, images, product
+          descriptions) is owned by Paws for Rivers and is protected by
+          copyright and trademark laws. You may not copy, distribute, or use our
+          content without written permission.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >4. Limitation of Liability</Heading
+        >
+        <Paragraph>
+          Paws for Rivers is not responsible for any damages arising from the
+          use of our website or products. We do not guarantee that our website
+          will always be available or free from errors.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >5. Third-Party Links</Heading
+        >
+        <Paragraph>
+          Our website may contain links to third-party sites. We are not
+          responsible for their content, privacy policies, or business
+          practices.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >6. Privacy Policy</Heading
+        >
+        <Paragraph>
+          Your use of this website is also governed by our Privacy Policy.
+          Please review it for details on how we handle your personal data.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >7. Changes to These Terms</Heading
+        >
+        <Paragraph>
+          We may update these Terms at any time. Continued use of our website
+          after updates means you accept the revised Terms.
+        </Paragraph>
+        <Heading size="xs" fontweight="bold" fontstyle="sans" class="mb-4"
+          >8. Contact Information</Heading
+        >
+        <Paragraph>
+          For questions about these Terms, please contact us at <a
+            class="link link-hover"
+            href="mailto:mail@pawsforrivers.com">mail@pawsforrivers.com</a
+          >.
+        </Paragraph>
+      </div>
+    </Container>
+  </div>
+</Layout>

@@ -1,0 +1,52 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import WaveDivider from "./WaveDivider.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const team = site.team;
+---
+
+<WaveDivider selectedColor="fill-base-100" />
+<section id="team" class="bg-base-100">
+  <Container width="marginxy">
+    <Heading size="md" class="text-center"> Who we are </Heading>
+    <Paragraph class="text-center mb-5">
+      We are a bunch of people who care for the planet and would like to make a
+      difference.
+    </Paragraph>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+      {
+        team.map((team) => (
+          <div class="card bg-base-100">
+            <figure>
+              <Image
+                src={team.image}
+                alt={team.name}
+                width={240}
+                height={240}
+                class="rounded-xl mx-auto"
+              />
+            </figure>
+            <div class="card-body">
+              <Heading size="sm" class="card-title" class="text-center">
+                {team.name}
+              </Heading>
+              <Heading size="xs" fontweight="light" class="text-center">
+                {team.role}
+              </Heading>
+              <Paragraph class="text-sm line-clamp-4">
+                {team.description}
+              </Paragraph>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

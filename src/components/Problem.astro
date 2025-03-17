@@ -1,0 +1,40 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import ProblemIcon from "./ProblemIcon.astro";
+import { getCollection } from "astro:content";
+import WaveDivider from "./WaveDivider.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const problems = site.problem;
+---
+
+<section id="mission" class="bg-success">
+  <Container class="pt-20 pb-36" width="marginx">
+    <Heading size="lg" class="text-center mb-10">
+      India’s freshwater ecosystems are collapsing under invasive fish species.
+    </Heading>
+
+    <div
+      class="grid place-content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mx-auto"
+    >
+      {
+        problems.map((problem) => (
+          <div class="card shadow-none">
+            <figure class="w-1/3 mx-auto">
+              <ProblemIcon icon={problem.icon} />
+            </figure>
+            <div class="w-0.5 h-14 bg-base-content mx-auto mt-2" />
+            <div class="bg-base-100 rounded-4xl border-2 border-base-content card-body">
+              <Heading fontweight="normal" class="text-justify" size="xs">
+                {problem.text}
+              </Heading>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+<WaveDivider selectedColor="fill-info" class="z-10" />

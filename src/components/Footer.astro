@@ -1,0 +1,68 @@
+---
+import { Icon } from "astro-icon/components";
+import PFRLogo from "./PFRLogo.astro";
+
+interface Contact {
+  icon: string;
+  link: string;
+  text: string;
+}
+
+interface Social {
+  icon: string;
+  link: string;
+  text: string;
+}
+
+interface Props {
+  author: any;
+  footnote: string;
+  copyright: string;
+  links: any;
+  contact: Contact[];
+  socials: Social[];
+}
+
+const { author, footnote, copyright, links, contact, socials } = Astro.props;
+---
+
+<footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+  <aside>
+    <PFRLogo />
+  </aside>
+  <nav>
+    <h6 class="footer-title">Menu</h6>
+    {
+      links.map((link: any) => (
+        <a href={link.link} class="link link-hover">
+          {link.text}
+        </a>
+      ))
+    }
+  </nav>
+  <nav>
+    <h6 class="footer-title">Company</h6>
+    <a class="link link-hover">About us</a>
+    <a class="link link-hover">Contact</a>
+    <a class="link link-hover">Jobs</a>
+    <a class="link link-hover">Press kit</a>
+  </nav>
+  <nav>
+    <h6 class="footer-title">Legal</h6>
+    <a class="link link-hover" href="/terms">Terms of Use</a>
+    <a class="link link-hover">Privacy policy</a>
+    <a class="link link-hover">Cookie policy</a>
+  </nav>
+</footer>
+
+<footer
+  class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4"
+>
+  <aside>
+    <p class="flex items-center">
+      {copyright}
+      <Icon name="ph:copyright" class="w-4 h-4 mx-2" />
+      {new Date().getFullYear()}
+    </p>
+  </aside>
+</footer>

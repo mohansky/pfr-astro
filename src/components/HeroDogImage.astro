@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import dog from "../assets/dogsg.png";
+---
+
+<div
+  class="image-container absolute bottom-0 lg:-bottom-32 left-50 lg:left-150 lg:w-1/2 lg:h-2/3"
+  id="dog-image-wrapper"
+>
+  <Image
+    src={dog}
+    alt="Animated image"
+    width={600}
+    height={400}
+    id="animated-image"
+    format="webp"
+    quality={80}
+  />
+</div>
+
+<script>
+  import { animate } from "motion";
+  function runAnimation() {
+    const imageContainer = document.getElementById("dog-image-wrapper");
+
+    if (imageContainer) {
+      console.log("Found image container, setting up animation");
+
+      imageContainer.style.transform = "translateY(200px)";
+      imageContainer.style.opacity = "0";
+
+      setTimeout(() => {
+        console.log("Starting animation");
+        animate(
+          imageContainer,
+          {
+            y: [200, 0],
+            opacity: [0, 1],
+          },
+          {
+            duration: 4.5,
+            type: "spring",
+            bounce: 0.5,
+            damping: 10,
+            delay: 1.25,
+          }
+        );
+      }, 100);
+    } else {
+      console.error("Image container not found");
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runAnimation);
+  } else {
+    runAnimation();
+  }
+</script>

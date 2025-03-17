@@ -1,0 +1,19 @@
+---
+import IconCatch from '@/content/site/images/mission/IconCatch.astro';
+import IconCircularModel from '@/content/site/images/mission/IconCircularModel.astro';
+import IconMarineFish from '@/content/site/images/mission/IconMarineFish.astro';
+import IconVetApproved from '@/content/site/images/mission/IconVetApproved.astro';
+
+ 
+
+export interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props;
+---
+
+{icon === "IconCatch" && <IconCatch />}
+{icon === "IconMarineFish" && <IconMarineFish />}
+{icon === "IconVetApproved" && <IconVetApproved />}
+{icon === "IconCircularModel" && <IconCircularModel />}

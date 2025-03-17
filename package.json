@@ -1,0 +1,30 @@
+{
+  "name": "pwr-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/netlify": "^6.2.3",
+    "@tailwindcss/vite": "^4.0.9",
+    "astro": "^5.4.1",
+    "astro-icon": "^1.1.5",
+    "better-sqlite3": "^11.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "motion": "^12.4.11",
+    "resend": "^4.1.2",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.9",
+    "theme-change": "^2.5.0"
+  },
+  "devDependencies": {
+    "@iconify-json/ph": "^1.2.2",
+    "daisyui": "^5.0.0-beta.9"
+  }
+}

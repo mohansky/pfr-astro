@@ -1,0 +1,83 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+
+const treatsData = await getCollection("treatsCollection");
+const treatsInfo = treatsData.map((treat) => ({
+  slug: treat.id,
+  name: treat.data.name,
+  origin: treat.data.origin,
+  image: treat.data.image,
+  price: treat.data.price,
+  weight: treat.data.weight,
+  id: treat.data.id,
+  comingSoon: treat.data.comingSoon,
+}));
+const treats = treatsInfo.sort((a, b) => a.id - b.id);
+---
+
+<section id="products" class="py-20 bg-base-100">
+  <Container width="marginx">
+    <div class="mx-auto flex flex-col items-center mb-10">
+      <Heading size="xl" fontweight="black" fontstyle="serif" class="mb-5"
+        >Pet Treats</Heading
+      >
+      <Paragraph>
+        Our products are sustainably sourced from artisanal fishermen. Get in
+        touch to preorder now.
+      </Paragraph>
+    </div>
+
+    <div
+      class="grid place-content-center grid-cols-2 lg:grid-cols-3 gap-10 mx-auto"
+    >
+      {
+        treats.map((treat) => (
+          <div class="card bg-base-100 w-full shadow-none">
+            <figure class="px-10 pt-10">
+              <div class="relative">
+                <Image
+                  src={treat.image}
+                  alt="hero"
+                  width={360}
+                  height={360}
+                  class="rounded-xl"
+                />
+                {treat.comingSoon && (
+                  <div class="badge badge-success absolute top-0 right-0">
+                    Coming Soon
+                  </div>
+                )}
+              </div>
+            </figure>
+            <div class="card-body items-center text-center">
+              <div class="flex justify-evely items-center gap-3">
+                <h2 class="card-title">{treat.name}</h2>
+                <p>{treat.origin}</p>
+              </div>
+              <div class="card-actions ">
+                <Heading fontweight="medium" fontstyle="sans">
+                  {treat.price}
+                </Heading>
+                <Heading size="xs" fontweight="light" fontstyle="sans">
+                  /{treat.weight}
+                </Heading>
+              </div>
+              <div class="card-actions">
+                <button class="btn btn-warning">
+                  <a href={`/treats/${treat.slug}`}>Pre Order</a>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

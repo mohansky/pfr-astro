@@ -1,0 +1,192 @@
+---
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import PFRLogo from "./PFRLogo.astro";
+
+interface NavLink {
+  text: string;
+  link: string;
+}
+
+interface Props {
+  links: NavLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<script>
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+  const drawerToggle = document.getElementById("my-drawer-3") as HTMLInputElement;
+  const drawerSide = document.querySelector(".drawer-side") as HTMLElement;
+  
+  // Fade-in/out effect for drawer
+  if (drawerToggle && drawerSide) {
+    drawerToggle.addEventListener("change", () => {
+      if (drawerToggle.checked) {
+        // Fade in
+        drawerSide.style.opacity = "0";
+        drawerSide.style.display = "block";
+        setTimeout(() => {
+          drawerSide.style.opacity = "1";
+        }, 10);
+      } else {
+        // Fade out
+        drawerSide.style.opacity = "0";
+        setTimeout(() => {
+          drawerSide.style.display = "none";
+        }, 300); // Match this with your transition duration
+      }
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      navbar?.classList.add("-translate-y-full");
+    } else {
+      navbar?.classList.remove("-translate-y-full");
+    }
+    lastScrollTop = scrollTop;
+
+    // For changing background color after the hero section
+    // Assuming the hero section height is 100vh, change this value as needed
+    const heroSectionHeight = window.innerHeight; // 100vh
+
+    if (scrollTop > heroSectionHeight) {
+      navbar?.classList.add("bg-base-200");
+      navbar?.classList.add("shadow-md");
+      navbar?.classList.remove("bg-transparent");
+    } else {
+      navbar?.classList.remove("bg-base-200");
+      navbar?.classList.remove("shadow-md");
+      navbar?.classList.add("bg-transparent");
+    }
+  });
+</script>
+
+<style>
+  .drawer-side {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    display: none;
+  }
+  
+  .drawer-toggle:checked ~ .drawer-side {
+    opacity: 1;
+    display: block;
+  }
+</style>
+
+<div class="drawer drawer-end z-30">
+  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <div
+      id="navbar"
+      class="z-10 navbar backdrop-blur-xs w-full fixed top-0 shadow-none px-2 md:px-5 lg:px-10 transition-transform"
+    >
+      <div class="mx-2 flex-1 px-2">
+        <a href="/" class="text-xl">
+          <div class="w-32 h-auto">
+            <PFRLogo />
+          </div>
+
+          <p class="sr-only">Paws for Rivers</p>
+        </a>
+      </div>
+
+      <div class="flex-none lg:hidden">
+        <label
+          for="my-drawer-3"
+          aria-label="open sidebar"
+          class="btn btn-circle btn-ghost"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h7"></path>
+          </svg>
+        </label>
+      </div>
+
+      <div class="hidden flex-none lg:block">
+        <ul class="menu menu-horizontal px-1" id="my-drawer-3">
+          {
+            links.map(({ text, link }) => (
+              <li>
+                <a
+                  href={link}
+                  title={`Go to ${text}`}
+                  class="uppercase font-medium"
+                >
+                  {text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <ThemeToggle />
+      </div>
+    </div>
+    <!-- Page content here -->
+  </div>
+
+  <div class="drawer-side z-30">
+    <div class="menu bg-base-200 min-h-full w-full" aria-label="Navigation">
+      <a href="/" class="text-xl">
+        <div class="w-32 h-auto">
+          <PFRLogo />
+        </div>
+        <p class="sr-only">Paws for Rivers</p>
+      </a>
+
+      <span id="close-menu-label" class="sr-only">Close menu</span>
+      <label
+        for="my-drawer-3"
+        aria-label="close sidebar"
+        aria-labelledby="close-menu-label"
+        class="absolute top-10 right-5 drawer-overlay z-30 btn btn-circle"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x"
+          ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+        >
+      </label>
+      <ul class="space-y-10 pt-10" aria-label="Navigation">
+        {
+          links.map(({ text, link }) => (
+            <li>
+              <a
+                href={link}
+                title={`Go to ${text}`}
+                class="mx-auto"
+                aria-label={`Go to ${text}`}
+              >
+                {text}
+              </a>
+            </li>
+          ))
+        }
+        <ThemeToggle />
+      </ul>
+    </div>
+  </div>
+</div>

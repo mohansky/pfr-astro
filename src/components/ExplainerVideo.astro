@@ -1,0 +1,17 @@
+---
+import YoutubeCard from "./YoutubeCard.astro";
+
+import { getCollection } from "astro:content";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const explainerVideo = site.explainerVideo;
+--- 
+    <section id="explainer-video" class="bg-base-100 pb-36">
+      <YoutubeCard
+        youtubeID={explainerVideo[0].youtubeID}
+        title={explainerVideo[0].title}
+        image={explainerVideo[0].image}
+      />
+    </section>
+ 

@@ -1,0 +1,54 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import Paragraph from "./Paragraph.astro";
+import PFRLogoOutline from "./PFRLogoOutline.astro";
+import video from "../assets/fish-bg.mp4";
+---
+
+<section id="whatareif" class="bg-info">
+  <!-- <div class="w-full h-screen"> -->
+  <div class="hero min-w-screen max-h-screen relative">
+    <media-controller class="w-full">
+      <video
+        slot="media"
+        class="w-full h-[75vh] object-cover"
+        src={video}
+        autoplay
+        loop></video>
+      <!-- <media-control-bar> </media-control-bar> -->
+    </media-controller>
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-neutral-content z-10">
+      <div class="max-w-4xl space-y-3 text-center">
+        <Heading size="xxl" class="text-balance">What are invasive species of Fish</Heading>
+        <Heading size="sm" class="mt-4 text-balance">
+          Non-native fish introduced through aquariums or aquaculture, now
+          harming ecosystems and economies. 
+          <!-- Some are even government-banned. -->
+        </Heading>
+      </div>
+    </div>
+  </div>
+  <!-- <Container width="marginx">
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <PFRLogoOutline class="hidden lg:block lg:min-w-64" />
+      <PFRLogoOutline
+        class="w-full absolute -top-14 opacity-10 block lg:hidden"
+      />
+      <div class="col-span-3">
+        <Heading size="md">What are invasive species of Fish</Heading>
+        <Paragraph class="mb-10">
+          Quite simply put, they are fish that have been introduced illegally or
+          through the aquarium trade and through aquaculture with good
+          intentions, but are causing adverse harm to the ecology and have
+          negative socio-economic impacts. Some of the invasive fish have been
+          banned by the government, from being bred.
+        </Paragraph>
+      </div>
+    </div>
+  </Container> -->
+</section>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"
+></script>

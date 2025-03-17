@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import SocialLinks from "./SocialLinks.astro";
+import WaveDivider from "./WaveDivider.astro";
+import ContactItems from "./ContactItems.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+---
+
+<WaveDivider selectedColor="fill-base-100" />
+<section id="contact">
+  <div class="bg-base-100 pt-1 pb-20">
+    <Container>
+      <Heading size="xl" class="text-center mb-20"> Contact </Heading>
+      <div class="flex flex-col md:flex-row justify-center md:justify-evenly">
+        <div class="mb-5">
+          <Heading size="lg" class="mb-5"> Get in touch </Heading>
+          <ContactItems contact={site.contact} />
+        </div>
+        <div>
+          <Heading size="lg" class="mb-5"> Follow us </Heading>
+          <SocialLinks class="w-16 h-16" socials={site.socials} />
+        </div>
+      </div>
+    </Container>
+  </div>
+</section>

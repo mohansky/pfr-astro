@@ -1,0 +1,62 @@
+---
+import { Icon } from "astro-icon/components";
+import Heading from "./Heading.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  youtubeID: string;
+  title: string;
+  class?: string;
+  image: {
+    height: number;
+    width: number;
+    format: "svg" | "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "avif";
+    src: string;
+  };
+}
+
+const { youtubeID, title, image, class: className = "" } = Astro.props;
+---
+
+<div x-data="{ showVideo: false }" x-cloak>
+  <template x-if="!showVideo">
+    <div class="relative w-fit mx-auto">
+      <Image
+        src={image}
+        class="w-full aspect-video object-cover rounded-2xl"
+        alt={title}
+        width={600}
+        height={600}
+      />
+
+      <div class="absolute top-0 left-0 w-full h-full bg-black/25 rounded-2xl"></div>
+      <button
+        @click="showVideo = true"
+        class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full p-6"
+      >
+        <Icon name="ph:play-circle-duotone" class="h-10 w-10" />
+      </button>
+      <Heading class="absolute bottom-0 left-1/2 -translate-x-1/2">
+        {title}
+      </Heading>
+    </div>
+  </template>
+
+  <template x-if="showVideo">
+    <div class="rounded-2xl">
+      <iframe
+        src={`https://www.youtube.com/embed/${youtubeID}`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        class={`aspect-video w-1/2 mx-auto p-0 rounded-2xl ${className}`}></iframe>
+    </div>
+  </template>
+</div>
+
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>

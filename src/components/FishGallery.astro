@@ -1,0 +1,19 @@
+---
+import Heading from "./Heading.astro";
+import InfiniteMovingCards from "./InfiniteMovingCards.astro";
+
+import { getCollection } from "astro:content";
+import WaveDivider from "./WaveDivider.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const fish = site.fish;
+
+---
+
+<section id="gallery" class="py-20 pb-20">
+  <Heading size="md" class="text-center mb-5">
+    Get to know some invasive fish
+  </Heading>
+  <InfiniteMovingCards items={fish} direction="right" speed="slow" />
+</section>

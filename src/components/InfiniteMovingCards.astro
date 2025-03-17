@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import { cn } from "../lib/utils";
+
+interface Item {
+  origin: string;
+  name: string;
+  idx: number;
+  image: {
+    height: number;
+    width: number;
+    format: "svg" | "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "avif";
+    src: string;
+  };
+}
+
+interface Props {
+  items: Item[];
+  direction?: "left" | "right";
+  speed?: "fast" | "normal" | "slow";
+  pauseOnHover?: boolean;
+  className?: string;
+}
+
+const {
+  items,
+  direction = "left",
+  speed = "fast",
+  pauseOnHover = true,
+  className = "",
+} = Astro.props;
+---
+
+<div
+  id="scroller-container"
+  class={cn(
+    "scroller relative z-20 max-w-8xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+    className
+  )}
+>
+  <ul
+    id="scroller-list"
+    class={cn(
+      "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap animate-scroll",
+      pauseOnHover && "hover:[animation-play-state:paused]"
+    )}
+  >
+    {
+      items.map((item) => (
+        <li
+          class="w-96 h-64 aspect-video relative rounded-2xl border-2 shadow-md flex-shrink-0 border-success px-2 py-6"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--slate-800), var(--slate-900))",
+          }}
+        >
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={480} 
+            class="object-cover absolute inset-0 rounded-2xl"
+          />
+          <blockquote>
+            <div
+              aria-hidden="true"
+              class="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+            ></div>
+            <div class="relative z-20 mt-6 flex flex-row items-center">
+              <span class="absolute top-36 left-1 flex flex-col gap-1 bg-black/20 backdrop-blur-sm px-3 py-1 rounded-xl">
+                <span class="text-xs leading-[1.6] text-gray-100 dark:text-gray-200 font-semibold">
+                  {item.name}
+                </span>
+                <span class="text-xs leading-[1.6] text-gray-100 dark:text-gray-200 font-normal">
+                  {item.origin}
+                </span>
+              </span>
+            </div>
+          </blockquote>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script define:vars={{ direction, speed, pauseOnHover }}>
+  function addAnimation() {
+    const container = document.getElementById("scroller-container");
+    const scroller = document.getElementById("scroller-list");
+
+    if (container && scroller) {
+      // Duplicate list items
+      const scrollerContent = Array.from(scroller.children);
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        scroller.appendChild(duplicatedItem);
+      });
+
+      // Set animation direction
+      if (direction === "left") {
+        container.style.setProperty("--animation-direction", "forwards");
+      } else {
+        container.style.setProperty("--animation-direction", "reverse");
+      }
+
+      // Set animation speed
+      if (speed === "fast") {
+        container.style.setProperty("--animation-duration", "20s");
+      } else if (speed === "normal") {
+        container.style.setProperty("--animation-duration", "40s");
+      } else {
+        container.style.setProperty("--animation-duration", "80s");
+      }
+    }
+  }
+
+  // Run animation setup when the page loads
+  window.addEventListener("load", addAnimation);
+</script>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50%));
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll var(--animation-duration, 20s) linear infinite;
+    animation-direction: var(--animation-direction, forwards);
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import Container from "./Container.astro";
+import Heading from "./Heading.astro";
+import WaveDivider from "./WaveDivider.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const goals = site.goals;
+---
+
+<WaveDivider selectedColor="fill-success" class="z-10" />
+<section id="goals" class="bg-success">
+  <Container class="pt-20 pb-36" width="marginx">
+    <Heading size="lg" class="text-center mb-10">
+      Sustainable Development Goals
+    </Heading>
+    <Heading size="md" class="text-center mb-10" fontweight="normal">
+      We're Paws for Rivers and we remove invasive fish from rivers and upcycle
+      them into sustainable pet food.
+    </Heading>
+    <div class="grid place-content-center grid-cols-2 lg:grid-cols-4 gap-10">
+      {
+        goals.map((goal) => (
+          <div class="card">
+            <figure>
+              <Image
+                src={goal.image}
+                alt={goal.title}
+                width={240}
+                height={240}
+                class="rounded-4xl"
+                title={goal.title}
+              />
+            </figure>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

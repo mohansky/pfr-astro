@@ -1,0 +1,194 @@
+---
+// Import the Image component
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Import all images from your folder
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{png,jpg,jpeg,gif,webp}');
+
+// Process images into an array
+const imageArray = await Promise.all(
+  Object.entries(images).map(async ([path, loader], index) => {
+    const image = await loader();
+    return {
+      id: `image-${index}`,
+      path,
+      default: image.default,
+      name: path.split('/').pop()?.split('.')[0] || `Image ${index}`
+    };
+  })
+);
+---
+
+<!-- Thumbnail Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  {imageArray.map((img, index) => (
+    <div class="thumbnail-container">
+      <label for="image-modal" class="cursor-pointer hover:opacity-90 transition-opacity" onclick={`document.getElementById('carousel').scrollTo({left: document.getElementById('slide-${index}').offsetLeft, behavior: 'instant'})`}>
+        <Image 
+          src={img.default} 
+          alt={`Thumbnail of ${img.name}`}
+          width={200}
+          height={150}
+          class="rounded-lg shadow-md object-cover w-full h-48"
+        />
+        <p class="mt-2 text-center truncate">{img.name}</p>
+      </label>
+    </div>
+  ))}
+</div>
+
+<!-- Modal for enlarged view with carousel -->
+<input type="checkbox" id="image-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box max-w-5xl relative p-0 bg-black">
+    <!-- Close button -->
+    <label for="image-modal" class="btn btn-sm btn-circle absolute right-2 top-2 z-10 bg-opacity-50">✕</label>
+    
+    <!-- Carousel with all images -->
+    <div id="carousel" class="carousel w-full snap-x relative transition-all duration-500">
+      {imageArray.map((img, index) => (
+        <div id={`slide-${index}`} class="carousel-item relative w-full flex-shrink-0 snap-center flex justify-center items-center min-h-96 transition-opacity duration-500">
+          <Image 
+            src={img.default} 
+            alt={img.name}
+            width={1200}
+            height={800}
+            class="max-h-[80vh] object-contain"
+          />
+          
+          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-10">
+            <a href={`#slide-${index === 0 ? imageArray.length - 1 : index - 1}`} id={`prev-btn-${index}`} class="btn btn-circle bg-opacity-50 transition-all hover:bg-opacity-80">❮</a>
+            <a href={`#slide-${index === imageArray.length - 1 ? 0 : index + 1}`} id={`next-btn-${index}`} class="btn btn-circle bg-opacity-50 transition-all hover:bg-opacity-80">❯</a>
+          </div>
+          
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-base-100 bg-opacity-70">
+            <h3 class="text-lg font-bold">{img.name}</h3>
+            <p class="text-sm">Image {index + 1} of {imageArray.length}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <label class="modal-backdrop" for="image-modal">Close</label>
+</div>
+
+<style>
+  /* Improved carousel scrolling with snap points */
+  #carousel {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    scroll-behavior: smooth;
+  }
+  
+  #carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
+  .carousel-item {
+    scroll-snap-align: center;
+  }
+  
+  /* Thumbnail hover effect */
+  .thumbnail-container {
+    transition: transform 0.2s;
+  }
+  .thumbnail-container:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Fade transition for slides */
+  .carousel-item {
+    transition: opacity 0.4s ease-in-out;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+<script>
+  // Ensure any hash links behave properly with the carousel
+  document.addEventListener('astro:page-load', () => {
+    const carousel = document.getElementById('carousel');
+    if (!carousel) return;
+    
+    // Access Motion from window object
+    // @ts-ignore - Motion is loaded from CDN
+    const { animate } = window.Motion;
+    
+    // Track the currently visible slide
+    let currentSlideIndex = 0;
+    
+    // Function to handle fade animations
+    const animateSlideTransition = (targetIndex: number): void => {
+      const slides = document.querySelectorAll('.carousel-item');
+      
+      // Ensure we have the needed slides
+      if (currentSlideIndex >= slides.length || targetIndex >= slides.length) return;
+      
+      // Fade out current slide
+      animate(slides[currentSlideIndex], 
+        { opacity: [1, 0] }, 
+        { duration: 0.4, easing: 'ease-out' }
+      );
+      
+      // Fade in target slide with a small delay
+      animate(slides[targetIndex], 
+        { opacity: [0, 1] }, 
+        { duration: 0.4, easing: 'ease-in', delay: 0.3 }
+      );
+      
+      // Update current slide index
+      currentSlideIndex = targetIndex;
+    };
+    
+    // Add click handlers to navigation buttons
+    document.querySelectorAll('.carousel-item button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default scrolling behavior
+        
+        // Get the target slide index from data attribute
+        const targetIndex = parseInt(button.getAttribute('data-target') || '0');
+        
+        // Call the animation function
+        animateSlideTransition(targetIndex);
+        
+        // Scroll to the target slide after a slight delay
+        setTimeout(() => {
+          const targetSlide = document.getElementById(`slide-${targetIndex}`);
+          if (targetSlide) {
+            document.getElementById('carousel')?.scrollTo({
+              left: targetSlide.offsetLeft,
+              behavior: 'smooth'
+            });
+          }
+        }, 200); // Delay scrolling to allow fade effect to be visible
+      });
+    });
+    
+    // Initialize all slides except the first one to opacity 0
+    const slides = document.querySelectorAll('.carousel-item');
+    slides.forEach((slide, index) => {
+      if (index !== 0) {
+        // Type assertion to HTMLElement which has the style property
+        (slide as HTMLElement).style.opacity = '0';
+      }
+    });
+    
+    // Make sure carousel snap behavior works properly
+    carousel.addEventListener('scroll', () => {
+      const slides = document.querySelectorAll('.carousel-item');
+      for (let i = 0; i < slides.length; i++) {
+        const slide = slides[i];
+        const rect = slide.getBoundingClientRect();
+        if (Math.abs(rect.left) < 50) {
+          // This slide is the current one
+          const index = parseInt(slide.id.split('-')[1] || '0');
+          
+          // If we've scrolled to a new slide, animate it
+          if (index !== currentSlideIndex) {
+            animateSlideTransition(index);
+          }
+        }
+      }
+    });
+  });
+</script>
