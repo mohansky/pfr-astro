@@ -35,12 +35,12 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
     </div>
 
     <div
-      class="grid place-content-center grid-cols-2 lg:grid-cols-3 gap-10 mx-auto"
+      class="grid place-content-center md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto"
     >
       {
         treats.map((treat) => (
           <div class="card bg-base-100 w-full shadow-none">
-            <figure class="px-10 pt-10">
+            <figure class="md:px-5 md:pt-5 lg:px-10 lg:pt-10">
               <div class="relative">
                 <Image
                   src={treat.image}
