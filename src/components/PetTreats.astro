@@ -57,11 +57,11 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
               </div>
             </figure>
             <div class="card-body items-center text-center">
-              <div class="flex justify-evely items-center gap-3">
+              <div class="flex flex-col lg:flex-row justify-evely items-center gap-3">
                 <h2 class="card-title">{treat.name}</h2>
                 <p>{treat.origin}</p>
               </div>
-              <div class="card-actions ">
+              <div class="card-actions flex justify-evenly items-center gap-3">
                 <Heading fontweight="medium" fontstyle="sans">
                   {treat.price}
                 </Heading>
