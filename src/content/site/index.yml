@@ -153,13 +153,13 @@ site:
   contactSubtitle: We look forward to hearing from you. Get in touch with us to book your stay.
 
   contact:
-    - link: tel:+919845632121
+    - link: tel:+918861646582
       icon: ph:phone-light
-      text: +91 984 563 2121
+      text: +91 886 164 6582
       name: Contact
-    - link: mailto:booking@hillstoneresort.com
+    - link: mailto:pawsforrivers@gmail.com
       icon: ph:envelope-simple-light
-      text: mail@pawsforrivers.com
+      text: pawsforrivers@gmail.com
       name: Contact
 
   socials:

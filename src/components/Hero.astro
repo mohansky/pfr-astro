@@ -1,11 +1,12 @@
---- 
-import Heading from "./Heading.astro"; 
+---
+import Heading from "./Heading.astro";
 import HeroDogImage from "./HeroDogImage.astro";
 import HeroCatImage from "./HeroCatImage.astro";
 import HeroPaws from "./HeroPaws.astro";
+import PFRLogoOutline from "./PFRLogoOutline.astro";
 ---
 
-<div class="hero min-w-screen min-h-screen relative">
+<div class="hero min-w-screen min-h-screen relative bg-error">
   <HeroCatImage />
   <HeroDogImage />
   <HeroPaws />
@@ -13,17 +14,37 @@ import HeroPaws from "./HeroPaws.astro";
   <div class="hero-overlay"></div>
   <div class="hero-content text-neutral-content z-10">
     <div class="max-w-2xl space-y-3">
-      <Heading size="xxxl" fontstyle="serif">Paws for Rivers</Heading>
+      <div
+        class="badge badge-dash badge-warning badge-xl rounded-full px-4 py-8 rotate-6 mt-5"
+      >
+        <PFRLogoOutline class="w-8 stroke-warning" />
+        <!-- <div class="text-4xl">🐾</div> -->
+        <div>Splash-tastic nutrition!</div>
+      </div>
+      <Heading size="xxxl" fontstyle="serif" class="-rotate-4 text-warning mb-8"
+        >Paws
+      </Heading>
+      <Heading size="xxl" class="rotate-4 text-info">For Rivers</Heading>
 
       <Heading
         size="xl"
-        fontstyle="sans"
+        fontstyle="serif"
         fontweight="light"
-        class="text-balance"
+        class="text-balance mb-10 text-accent-content -rotate-2"
       >
-        Eco-Friendly, Nutritious and Sustainable Pet Food
+        <span class="text-success font-bold">Eco-Friendly,</span>
+        <span class="text-warning"> Nutritious and Sustainable , </span>
+        <span class="text-info font-black"> Pet Food </span>
       </Heading>
-      <button class="btn btn-warning btn-lg uppercase">Contact</button>
+      <div>
+        <a href="/#products" class="btn btn-warning btn-lg">
+          <span>Preorder Now!</span>
+          <div class="btn-splash"></div>
+        </a>
+        <a href="/about" class="btn btn-outline btn-lg ml-5"
+          >Dive Into Our Story</a
+        >
+      </div>
     </div>
   </div>
 </div>

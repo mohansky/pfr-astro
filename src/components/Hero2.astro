@@ -1,0 +1,40 @@
+---
+import Heading from "./Heading.astro";
+import HeroCatImage from "./HeroCatImage.astro";
+import HeroDogImage from "./HeroDogImage.astro";
+---
+
+<section class="hero min-w-screen min-h-screen relative">
+  <HeroDogImage />
+  <HeroCatImage />
+  <div class=" z-10 bg-amber-700 hero-content flex-col lg:flex-row">
+    <div class="   bg-amber-200">
+      <!-- <div class="badge badge-dash badge-info badge-xl p-5 rotate-6 mt-5">
+        <div class="badge-icon">🐾</div>
+        <div class="badge-text">Splash-tastic nutrition!</div>
+      </div> -->
+      
+      <Heading size="xxxl" fontstyle="serif" class="-rotate-4 text-warning mb-5"
+        >Paws
+      </Heading>
+      <Heading size="xxl" class="rotate-4 text-info">For Rivers</Heading>
+
+      <Heading class="text-primary mb-5 block">
+        Wag-worthy meals that help keep our waterways
+        <span class="highlight block text-2xl rotate-6 mt-12"
+          >pawsitively pristine!</span
+        >
+      </Heading>
+
+      <div>
+        <a href="/shop" class="btn btn-warning">
+          <span>Fetch Some Food!</span>
+          <div class="btn-splash"></div>
+        </a>
+        <a href="/about" class="btn btn-outline ml-5">Dive Into Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+ 

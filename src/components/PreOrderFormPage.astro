@@ -1,0 +1,311 @@
+---
+import { server } from "@/actions/index";
+import Heading from "./Heading.astro";
+import { isInputError } from "astro:actions";
+import { actions } from "astro:actions";
+
+const result = Astro.getActionResult(actions.contactForm);
+if (result?.data) {
+  return Astro.redirect("/");
+}
+
+const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+
+console.log(inputErrors);
+---
+
+<style>
+  /* Hide arrow spinners for quantity input fields */
+  input[type="number"].quantity-input::-webkit-outer-spin-button,
+  input[type="number"].quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* For Firefox */
+  input[type="number"].quantity-input {
+    -moz-appearance: textfield;
+  }
+</style>
+
+<div class="m-auto">
+  <Heading>
+    To pre order please fill out the form below. And we will get back to you.
+  </Heading>
+
+  <form
+    id="contact-form"
+    action={actions.contactForm}
+    method="post"
+    class="flex flex-col gap-6 my-10"
+  >
+    <input
+      class="password-input"
+      type="text"
+      id="a_password"
+      name="a_password"
+      tabindex="-1"
+      autocomplete="off"
+    />
+
+    <input
+      type="text"
+      name="fullName"
+      placeholder="Full Name"
+      class="input input-bordered w-full"
+      required
+      aria-describedby={inputErrors.fullName ? "fullName-error" : undefined}
+    />
+    {
+      inputErrors.fullName && (
+        <p id="fullName-error">{inputErrors.fullName[0]}</p>
+      )
+    }
+
+    <div class="grid grid-cols-2 gap-4">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        class="input input-bordered w-full"
+        required
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        class="input input-bordered w-full"
+        required
+      />
+    </div>
+
+    <!-- Product selection with quantities -->
+    <div class="card bg-base-200 p-4">
+      <h3 class="text-lg font-medium mb-4">Select Products</h3>
+
+      <div class="space-y-4">
+        <!-- Product 1 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="wet-food-250"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Wet food 250grams</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled>-</button
+            >
+            <input
+              type="number"
+              name="quantity-wet-food-250"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase">+</button
+            >
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="wet-food-100"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Wet food 100grams</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled>-</button
+            >
+            <input
+              type="number"
+              name="quantity-wet-food-100"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase">+</button
+            >
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="treats-150"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Treats 150grams</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled>-</button
+            >
+            <input
+              type="number"
+              name="quantity-treats-150"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase">+</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <textarea
+      name="address"
+      class="textarea textarea-bordered w-full"
+      rows="5"
+      placeholder="Your Address"
+      required></textarea>
+
+    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+  </form>
+</div>
+
+<script>
+  import { isInputError, actions } from "astro:actions";
+
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const toast = document.querySelector(".toast") as HTMLDivElement;
+
+  // Product quantity handling
+  const setupProductQuantities = () => {
+    const productCheckboxes = document.querySelectorAll(".product-checkbox");
+
+    productCheckboxes.forEach((checkbox) => {
+      const checkboxEl = checkbox as HTMLInputElement;
+      const productRow = checkboxEl.closest("div");
+      if (!productRow) return;
+
+      const quantityInput = productRow.querySelector(
+        ".quantity-input"
+      ) as HTMLInputElement;
+      const decreaseBtn = productRow.querySelector(
+        ".quantity-decrease"
+      ) as HTMLButtonElement;
+      const increaseBtn = productRow.querySelector(
+        ".quantity-increase"
+      ) as HTMLButtonElement;
+
+      // Initialize state
+      checkboxEl.addEventListener("change", () => {
+        if (checkboxEl.checked) {
+          quantityInput.value = "1";
+          decreaseBtn.disabled = false;
+        } else {
+          quantityInput.value = "0";
+          decreaseBtn.disabled = true;
+        }
+      });
+
+      // Decrease quantity
+      decreaseBtn.addEventListener("click", () => {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+          quantityInput.value = (value - 1).toString();
+        } else {
+          quantityInput.value = "0";
+          checkboxEl.checked = false;
+          decreaseBtn.disabled = true;
+        }
+      });
+
+      // Increase quantity
+      increaseBtn.addEventListener("click", () => {
+        let value = parseInt(quantityInput.value);
+        if (value < 10) {
+          if (value === 0) {
+            checkboxEl.checked = true;
+            decreaseBtn.disabled = false;
+          }
+          quantityInput.value = (value + 1).toString();
+        }
+      });
+    });
+  };
+
+  // Call setup function after the DOM is loaded
+  document.addEventListener("DOMContentLoaded", setupProductQuantities);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Honeypot check
+    const honeypot = document.getElementById("a_password") as HTMLInputElement;
+    if (honeypot && honeypot.value.trim() !== "") {
+      console.warn("Spam detected: honeypot field is filled.");
+      return;
+    }
+
+    // Make sure at least one product is selected
+    const productCheckboxes = document.querySelectorAll(
+      ".product-checkbox"
+    ) as NodeListOf<HTMLInputElement>;
+    const anyProductSelected = Array.from(productCheckboxes).some(
+      (checkbox) => checkbox.checked
+    );
+
+    if (!anyProductSelected) {
+      alert("Please select at least one product");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const { data, error } = await actions.contactForm(formData);
+
+    if (data) {
+      form.reset();
+      setupProductQuantities(); // Reset product quantities
+      if (toast) {
+        toast.style.display = "block";
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 3000);
+      }
+    }
+
+    if (error && isInputError(error)) {
+      console.error("Input error:", error);
+    }
+  });
+</script>
+
+<div class="toast" style="display: none;">
+  <div class="alert alert-success">
+    <span>Form submitted, thank you for your message.</span>
+  </div>
+</div>

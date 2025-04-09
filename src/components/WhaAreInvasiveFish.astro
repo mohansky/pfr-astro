@@ -3,13 +3,13 @@ import Container from "./Container.astro";
 import Heading from "./Heading.astro";
 import Paragraph from "./Paragraph.astro";
 import PFRLogoOutline from "./PFRLogoOutline.astro";
-import video from "../assets/fish-bg.mp4";
+import video from "/fish-bg.mp4";
 ---
 
 <section id="whatareif" class="bg-info">
   <!-- <div class="w-full h-screen"> -->
   <div class="hero min-w-screen max-h-screen relative">
-    <media-controller class="w-full">
+     <media-controller class="w-screen"> 
       <video
         slot="media"
         class="w-full h-[75vh] object-cover"
@@ -17,8 +17,8 @@ import video from "../assets/fish-bg.mp4";
         autoplay
         loop></video>
       <!-- <media-control-bar> </media-control-bar> -->
-    </media-controller>
-    <div class="hero-overlay"></div>
+    </media-controller>  
+    <!-- <div class="hero-overlay"></div> -->
     <div class="hero-content text-neutral-content z-10">
       <div class="max-w-4xl space-y-3 text-center">
         <Heading size="xxl" class="text-balance">What are invasive species of Fish</Heading>

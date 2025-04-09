@@ -11,8 +11,8 @@ import {
   render,
 } from "astro:content";
 import ListUnordered from "@/components/ListUnordered.astro";
-import ListItem from "@/components/ListItem.astro";
-import PreOrderForm from "@/components/PreOrderForm.astro";
+import ListItem from "@/components/ListItem.astro"; 
+import PreOrderFormSingle from "@/components/PreOrderFormSingle.astro";
 
 export async function getStaticPaths() {
   const publishedTreats = await getCollection(
@@ -65,7 +65,7 @@ const { Content } = await render(entry);
                   aria-label="close sidebar"
                   class="drawer-overlay"></label>
                 <div class="w-[50vw] h-full bg-base-300 drawer-content flex justify-between">
-                  <PreOrderForm />
+                  <PreOrderFormSingle productname={entry.data.name} />
                 </div>
               </div>
             </div>
