@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import WaveDivider from "../ui/WaveDivider.astro";
+import Heading from "../ui/Heading.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const source = site.intro;
+---
+
+<WaveDivider class="z-10" selectedColor="fill-info" />
+<div class="relative bg-info py-20">
+  <div class="pb-20">
+    {
+      source.map((sentence, idx) => (
+        <Heading size="lg" class="text-center text-balance max-w-5xl mx-auto mb-5">
+          {sentence}
+        </Heading>
+      ))
+    } 
+  </div>
+</div>
+<WaveDivider selectedColor="fill-base-100" />

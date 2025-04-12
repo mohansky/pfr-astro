@@ -1,0 +1,88 @@
+---
+// src/pages/admin-login.astro
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Layout from "@/layouts/Layout.astro";
+// Check if there's an error parameter
+const error = Astro.url.searchParams.get("error");
+// If form was submitted
+if (Astro.request.method === "POST") {
+  try {
+    const formData = await Astro.request.formData();
+    const username = formData.get("username");
+    const password = formData.get("password");
+    
+    // Use environment variables instead of hardcoded credentials
+    const adminUsername = import.meta.env.ADMIN_USERNAME;
+    const adminPassword = import.meta.env.ADMIN_PASSWORD;
+    
+    if (username === adminUsername && password === adminPassword) {
+      // Set a cookie for authentication
+      Astro.cookies.set("admin-auth", "true", {
+        path: "/",
+        httpOnly: true,
+        secure: true, // Set to true in production
+        sameSite: "strict",
+        maxAge: 60 * 60 * 24, // 24 hours
+      });
+      // Redirect to orders page
+      return Astro.redirect("/orders");
+    } else {
+      // Redirect back with error
+      return Astro.redirect("/admin-login?error=invalid");
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    return Astro.redirect("/admin-login?error=unknown");
+  }
+}
+---
+<Layout title="Admin Login | Paws for Rivers">
+    <main class="bg-base-100 mx-auto px-4 py-8">
+      <Container width="marginxy">
+        <form method="POST">
+          <fieldset
+            class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box mx-auto my-auto"
+          >
+            {
+              error === "invalid" && (
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                  Invalid username or password
+                </div>
+              )
+            }
+            {
+              error === "auth" && (
+                <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+                  Please login to access the orders
+                </div>
+              )
+            }
+            <legend class="fieldset-legend">Admin Login</legend>
+            <label class="fieldset-label" for="username">Username</label>
+            <input
+              class="input"
+              placeholder="Username"
+              type="text"
+              id="username"
+              name="username"
+              required
+            />
+            <label class="fieldset-label" for="password">Password</label>
+            <input
+              class="input"
+              placeholder="Password"
+              type="password"
+              id="password"
+              name="password"
+              required
+            />
+            <button
+              class="btn btn-neutral btn-block hover:bg-primary/80 mt-4"
+              type="submit">Login</button
+            >
+          </fieldset>
+        </form>
+      </Container>
+    </main>
+</Layout>

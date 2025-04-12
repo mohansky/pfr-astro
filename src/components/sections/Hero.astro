@@ -1,0 +1,39 @@
+---
+import HeroBgFish from "../animatedimages/HeroBgFish.astro";
+import HeroCatImage from "../animatedimages/HeroCatImage.astro";
+import HeroDogImage from "../animatedimages/HeroDogImage.astro";
+import Heading from "../ui/Heading.astro";
+ 
+---
+
+<div class="hero min-w-screen min-h-screen relative bg-[#00ADD1]">
+  <HeroCatImage />
+  <HeroDogImage />
+  <HeroBgFish />
+
+  <!-- <div class="hero-overlay opacity-20"></div> -->
+  <div class="hero-content text-neutral-content z-10">
+    <div class="max-w-2xl space-y-3">
+      <Heading size="xxxl" fontstyle="serif" class="mb-2">Paws</Heading>
+      <Heading size="xxl" class="mb-8">For Rivers</Heading>
+
+      <Heading
+        size="xl"
+        fontstyle="serif"
+        fontweight="light"
+        class="text-balance mb-10"
+      >
+      If it helps the fish and fills my dish- I'm in!
+        <!-- <span class="font-bold">Eco-Friendly,</span>
+        <span class=""> Nutritious and Sustainable, </span>
+        <span class="font-black"> Pet Food </span> -->
+      </Heading>
+      <div>
+        <a href="/preorder" class="btn btn-warning btn-lg">
+          <span>Preorder Now!</span>
+          <div class="btn-splash"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
