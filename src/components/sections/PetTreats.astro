@@ -26,10 +26,10 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
   <Container width="marginx">
     <div class="mx-auto flex flex-col items-center mb-10">
       <Heading size="xl" fontweight="black" fontstyle="serif" class="mb-5"
-        >Pet Treats</Heading
+        >{site.treatsTitle}</Heading
       >
       <Paragraph>
-        Wholesome nutrition- one fishy bite at a time. Pre-order now!
+        {site.treatsSubtitle}
       </Paragraph>
     </div>
 
@@ -43,7 +43,8 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
               <div class="relative">
                 <Image
                   src={treat.image}
-                  alt="hero"
+                  alt={treat.name || "Paws for Rivers"}
+                  title={treat.name}
                   width={360}
                   height={360}
                   class="rounded-xl"

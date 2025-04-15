@@ -1,7 +1,6 @@
 ---
-import PFRLogo from '../icons/PFRLogo.astro';
-import ThemeToggle from './ThemeToggle.astro';
- 
+import PFRLogo from "../icons/PFRLogo.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface NavLink {
   text: string;
@@ -18,9 +17,11 @@ const { links } = Astro.props;
 <script>
   let lastScrollTop = 0;
   const navbar = document.getElementById("navbar");
-  const drawerToggle = document.getElementById("my-drawer-3") as HTMLInputElement;
+  const drawerToggle = document.getElementById(
+    "my-drawer-3"
+  ) as HTMLInputElement;
   const drawerSide = document.querySelector(".drawer-side") as HTMLElement;
-  
+
   // Fade-in/out effect for drawer
   if (drawerToggle && drawerSide) {
     drawerToggle.addEventListener("change", () => {
@@ -72,7 +73,7 @@ const { links } = Astro.props;
     opacity: 0;
     display: none;
   }
-  
+
   .drawer-toggle:checked ~ .drawer-side {
     opacity: 1;
     display: block;
@@ -87,7 +88,7 @@ const { links } = Astro.props;
       class="z-10 navbar backdrop-blur-xs w-full fixed top-0 shadow-none px-2 md:px-5 lg:px-10 transition-transform"
     >
       <div class="mx-2 flex-1 px-2">
-        <a href="/" class="text-xl">
+        <a href="/" class="text-xl" title="Paws for Rivers Home">
           <div class="w-32 h-auto">
             <PFRLogo />
           </div>
@@ -143,7 +144,7 @@ const { links } = Astro.props;
 
   <div class="drawer-side z-30">
     <div class="menu bg-base-200 min-h-full w-full" aria-label="Navigation">
-      <a href="/" class="text-xl">
+      <a href="/" class="text-xl" title="Paws for Rivers Home">
         <div class="w-32 h-auto">
           <PFRLogo />
         </div>

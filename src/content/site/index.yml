@@ -1,28 +1,31 @@
 site:
   name: Paws for Rivers
-  title: Paws for Rivers | We aim to provide wholesome treats and supplements to take care of your pets’ nutritional requirements,
-  description: We aim to provide wholesome treats and supplements to take care of your pets’ nutritional requirements.
+  title: Paws for Rivers | Wholesome nutrition- one fishy bite at a time.
+  description: Paws for Rivers a fishtastic solution for your pet’s nutritional needs- addressing joint, skin health and overall well-being.
   basepath: https://www.pawsforrivers.com
   ogImageURL: ./images/pfrlogo.svg
   keywords:
-    - Wev Design
+    - Eco-Conscious Pet Nutrition
+    - Conservation Through Consumption
+    - Turning Invasive Threats into Nutritional Opportunities
+    - Pets as Environmental Heroes
 
   author:
     name: Mohan Kumar
     email: mohansky@gmail.com
     url: https://www.mohankumar.dev
 
-  footnote1: Developed with ♥ and ♫ in Bangalore
-  footnote: Built with Astrojs
   copyright: Paws for Rivers
+  footnote: Eco-Friendly, Nutritious and Sustainable, Pet Food
+  footnote1: Developed with ♥ and ♫ in Bangalore
   email: mohansky@gmail.com
 
   hero:
     - bgImage: ./images/pfrlogo.svg
       title: Paws for Rivers
-      subtitle: Immerse yourself in nature
-      btnLink: /#contact
-      btnText: Contact
+      subtitle: If it helps the fish and fills my dish- I'm in!
+      btnLink: /preorder
+      btnText: Preorder Now!
 
   links:
     - text: Home
@@ -40,7 +43,10 @@ site:
     - It all started with one light bulb moment- “What if we could fight invasive species by feeding them to our pets? Boom! Eco-friendly, tail wagging, purring, brilliance. 
     - With over a decade of experience working on river ecosystems, we saw an opportunity to flip the script- turning an environmental challenge into a sustainable, nutritious solution to fulfill your pets needs and reduce your environmental pawprint. 
 
-
+  aboutTitle: Fishtastic solution for your pet’s nutritional needs- addressing joint, skin health and overall well-being.
+  aboutVideo: ./fish-bg.mp4
+  treatsTitle: Pet Treats
+  treatsSubtitle: Wholesome nutrition- one fishy bite at a time. Pre-order now!
   treats:
     - idx: 1
       name: Tilapia Bites
@@ -51,6 +57,7 @@ site:
       origin: South America
       image: ./images/treats/cat-treat.jpg
 
+  problemTitle: India’s freshwater ecosystems are collapsing under invasive fish species.
   problem:
     - idx: 1
       text: Alien invasive fish are wiping out native biodiversity, threatening freshwater ecosystems.
@@ -65,6 +72,7 @@ site:
       text: 75% of pet food uses marine fish, accelerating biodiversity collapse.
       icon: IconBiodiversityCollapse
 
+  missionTitle: Instead of treating invasive fish as waste, we turn them into a scalable, sustainable alternative to ocean-based pet food.
   missions:
     - idx: 1
       text: Directly removes invasive species, restoring native biodiversity.
@@ -79,6 +87,14 @@ site:
       text: Circular model → every purchase actively restores freshwater habitats.
       icon: IconCircularModel
 
+  whythispetfoodTitle: Why this pet food
+  whythispetfoodText:
+    - Our meals and treats act as a supplement to meat based proteins and a replacement to ocean fish.
+    - Skin irritation and inflammation in pets can often be caused by a surplus of omega 6 fatty acids in the body, which are commonly found in vegetable oils and chicken fat-
+    - Omega 3 found naturally in fish can counteract the effects of omega 6.
+
+  goalsTitle: Sustainable Development Goals
+  goalsSubtitle: We’re proud to make products that help pets thrive- and help protect native freshwater fish species in the wild.
   goals:
     - idx: 1
       image: ./images/sd/12ResponsibleConsumption.svg
@@ -98,7 +114,9 @@ site:
       youtubeID: LgBiizGVe5Q
       title: Why is it a threat
       image: ./images/video-tn.png
-
+    
+  teamTitle: Who we are
+  teamSubtitle: We are a bunch of people who care for the planet and would like to make a difference.
   team:
     - idx: 1
       name: Neeti Mahesh
@@ -116,6 +134,7 @@ site:
       description: Sayan drives strategy, growth, and productmarket fit at Paws for Rivers. With 10+ years in product marketing and innovation, he’s focused on scaling impact-driven ventures.
       image: ./images/team/sayan.jpg
 
+  galleryTitle: Get to know some invasive fish
   fish:
     - idx: 1
       origin: Middle East, Central and South Africa.
@@ -151,7 +170,7 @@ site:
       image: ./images/fish/Red-Bellied-Piranha.jpg
 
   contactTitle: Contact
-  contactSubtitle: We look forward to hearing from you. Get in touch with us to book your stay.
+  contactSubtitle: Get in touch
 
   contact:
     - link: tel:+918861646582
@@ -163,13 +182,14 @@ site:
       text: pawsforrivers@gmail.com
       name: Contact
 
+  socialsTitle: Follow us
   socials:
     - link: https://www.facebook.com/pawsforrivers/
-      icon: ph:facebook-logo-duotone
+      icon: hugeicons:facebook-01
       text: Facebook
     - link: https://www.instagram.com/pawsforrivers/
-      icon: ph:instagram-logo-duotone
+      icon: hugeicons:instagram
       text: Instagram
     - link: https://www.youtube.com/pawsforrivers/"
-      icon: ph:youtube-logo-duotone
+      icon: hugeicons:youtube
       text: Youtube

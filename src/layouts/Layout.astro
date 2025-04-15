@@ -2,7 +2,7 @@
 import Background from "@/components/layout/Background.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Navbar from "@/components/layout/Navbar.astro";
-import "@/styles/global.css"; 
+import "@/styles/global.css";
 import { getCollection } from "astro:content";
 
 const siteData = await getCollection("siteCollection");
@@ -135,7 +135,7 @@ const site = siteInfo;
         sameAs: [
           "https://www.facebook.com/pawsforrivers",
           "https://www.instagram.com/pawsforrivers",
-          "https://www.tripadvisor.com/pawsforrivers",
+          "https://www.youtube.com/pawsforrivers",
         ],
       })}
     />
@@ -157,13 +157,14 @@ const site = siteInfo;
     <meta name="generator" content={Astro.generator} />
     <title>{site.title}</title>
     <meta name="description" content={site.description} />
+    <meta name="publisher" content={site.title}>
 
     <!-- Open Graph Meta Tags (for social sharing) -->
     <meta property="og:title" content={site.title} />
     <meta property="og:description" content={site.description} />
     <meta
       property="og:image"
-      content={`${site.basepath}/images/open-graph-image.jpg`}
+      content={`${site.basepath}/images/pfrlogo.svg`}
     />
     <meta property="og:url" content={`${site.basepath}/`} />
     <meta property="og:type" content="website" />
@@ -174,7 +175,7 @@ const site = siteInfo;
     <meta name="twitter:description" content={site.description} />
     <meta
       name="twitter:image"
-      content={`${site.basepath}/images/twitter-image.jpg"`}
+      content={`${site.basepath}/images/pfrlogo.svg`}
     />
 
     <!-- Canonical URL (prevents duplicate content issues) -->
@@ -185,8 +186,32 @@ const site = siteInfo;
     <meta name="keywords" content={site.keywords.join(",")} />
     <!-- Less important now but still used -->
     <meta name="author" content={site.author.name} />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KT3HBTSK");
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
   <body class="overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KT3HBTSK"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
     <Navbar links={site.links} />
     <Background />
     <slot />

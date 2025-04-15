@@ -1,4 +1,4 @@
---- 
+---
 import { getCollection } from "astro:content";
 import Container from "../ui/Container.astro";
 import Heading from "../ui/Heading.astro";
@@ -12,8 +12,7 @@ const missions = site.missions;
 <section id="mission" class="bg-info">
   <Container class="pt-20 pb-36" width="marginx">
     <Heading size="lg" class="text-center text-balance mb-10">
-      Instead of treating invasive fish as waste, we turn them into a scalable,
-      sustainable alternative to ocean-based pet food.
+      {site.missionTitle}
     </Heading>
 
     <div

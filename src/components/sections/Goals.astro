@@ -1,4 +1,4 @@
---- 
+---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import WaveDivider from "../ui/WaveDivider.astro";
@@ -14,12 +14,10 @@ const goals = site.goals;
 <section id="goals" class="bg-success">
   <Container class="pt-20 pb-36" width="marginx">
     <Heading size="lg" class="text-center mb-10">
-      Sustainable Development Goals
+      {site.goalsTitle}
     </Heading>
     <Heading size="md" class="text-center mb-10" fontweight="normal">
-      <!-- We're Paws for Rivers and we remove invasive fish from rivers and upcycle
-      them into sustainable pet food. -->
-      We’re proud to make products that help pets thrive- and help protect native freshwater fish species in the wild. 
+      {site.goalsSubtitle}
     </Heading>
     <div class="grid place-content-center grid-cols-2 lg:grid-cols-4 gap-10">
       {

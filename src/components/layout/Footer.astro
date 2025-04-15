@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components"; 
+import { Icon } from "astro-icon/components";
 import PFRLogo from "../icons/PFRLogo.astro";
 import SocialLinks from "../ui/SocialLinks.astro";
 
@@ -30,7 +30,7 @@ const { author, footnote, copyright, links, contact, socials } = Astro.props;
 <footer class="footer footer-horizontal footer-center bg-base-300 p-10">
   <aside>
     <PFRLogo class="w-32" />
-    <p class="font-bold">Eco-Friendly, Nutritious and Sustainable, Pet Food</p>
+    <p class="font-semibold">{footnote}</p>
     <p class="flex items-center">
       {copyright}
       <Icon name="ph:copyright" class="w-4 h-4 mx-2" />

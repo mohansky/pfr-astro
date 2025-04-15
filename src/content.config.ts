@@ -36,6 +36,10 @@ const siteCollection = defineCollection({
         })
       ),
       intro: z.array(z.string()),
+      aboutTitle: z.string(),
+      aboutVideo: z.string(),
+      treatsTitle: z.string(),
+      treatsSubtitle: z.string(),
       treats: z.array(
         z.object({
           idx: z.number(),
@@ -44,6 +48,7 @@ const siteCollection = defineCollection({
           image: image(),
         })
       ),
+      problemTitle: z.string(),
       problem: z.array(
         z.object({
           idx: z.number(),
@@ -51,6 +56,7 @@ const siteCollection = defineCollection({
           icon: z.string(),
         })
       ),
+      missionTitle: z.string(),
       missions: z.array(
         z.object({
           idx: z.number(),
@@ -58,6 +64,12 @@ const siteCollection = defineCollection({
           icon: z.string(),
         })
       ),
+      whythispetfoodTitle: z.string(),
+      whythispetfoodText: z.array(
+        z.string()
+      ),
+      goalsTitle: z.string(),
+      goalsSubtitle: z.string(),
       goals: z.array(
         z.object({
           idx: z.number(),
@@ -73,6 +85,9 @@ const siteCollection = defineCollection({
           image: image(),
         })
       ),
+      galleryTitle: z.string(),
+      teamTitle: z.string(),
+      teamSubtitle: z.string(),
       team: z.array(
         z.object({
           idx: z.number(),
@@ -99,6 +114,7 @@ const siteCollection = defineCollection({
           text: z.string(),
         })
       ),
+      socialsTitle: z.string(),
       socials: z.array(
         z.object({ 
           link: z.string(),

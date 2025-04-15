@@ -14,14 +14,14 @@ const site = siteInfo;
 <section id="contact">
   <div class="bg-base-100 pt-1 pb-20">
     <Container>
-      <Heading size="xl" class="text-center mb-20"> Contact </Heading>
+      <Heading size="xl" class="text-center mb-20">{site.contactTitle}</Heading>
       <div class="flex flex-col md:flex-row justify-center md:justify-evenly">
         <div class="mb-5">
-          <Heading size="lg" class="mb-5"> Get in touch </Heading>
+          <Heading size="lg" class="mb-5">{site.contactSubtitle}</Heading>
           <ContactItems contact={site.contact} />
         </div>
         <div>
-          <Heading size="lg" class="mb-5"> Follow us </Heading>
+          <Heading size="lg" class="mb-5">{site.socialsTitle}</Heading>
           <SocialLinks class="w-16 h-16" socials={site.socials} />
         </div>
       </div>
