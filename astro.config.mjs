@@ -31,8 +31,7 @@ export default defineConfig({
         context: "server",
         access: "secret",
         optional: false,
-      }),
-      // Add the new admin credentials environment variables
+      }), 
       ADMIN_USERNAME: envField.string({
         context: "server",
         access: "secret",

@@ -13,6 +13,7 @@
     "@astrojs/netlify": "^6.2.5",
     "@astrojs/react": "^4.2.3",
     "@astrojs/sitemap": "^3.3.0",
+    "@iconify-json/hugeicons": "^1.2.4",
     "@libsql/client": "^0.15.2",
     "@react-email/components": "^0.0.36",
     "@tailwindcss/vite": "^4.0.9",
