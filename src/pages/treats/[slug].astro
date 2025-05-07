@@ -1,0 +1,100 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import ListItem from "@/components/ui/ListItem.astro";
+import ListUnordered from "@/components/ui/ListUnordered.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import {
+  type CollectionEntry,
+  getCollection,
+  getEntry,
+  render,
+} from "astro:content"; 
+
+export async function getStaticPaths() {
+  const publishedTreats = await getCollection(
+    "treatsCollection",
+    ({ data }) => {
+      return data.published === true;
+    }
+  );
+  return publishedTreats.map((treat) => ({
+    params: { slug: treat.id },
+    props: { treat },
+  }));
+}
+
+const { treat } = Astro.props as { treat: CollectionEntry<"treatsCollection"> };
+
+const entry = await getEntry("treatsCollection", treat.id);
+if (!entry) {
+  throw new Error("Could not find blog post with id: " + treat.id);
+}
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <div class="bg-base-100">
+    <Container width="marginxy" animate={true}>
+      <div class="card lg:card-side bg-base-100 shadow-none">
+        <figure>
+          <Image
+            src={entry.data.image}
+            alt={entry.data.name!}
+            class="rounded-md"
+          />
+        </figure>
+        <div class="card-body lg:max-w-1/2 space-y-3">
+          <div class="card-actions justify-between">
+            <div class="drawer drawer-end">
+              <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+              <div class="drawer-content flex justify-between">
+                <Heading size="xl" fontweight="black" fontstyle="serif"
+                  >{entry.data.name}</Heading
+                >
+                <label for="my-drawer-4" class="drawer-button btn btn-primary"
+                  >Pre Order</label
+                >
+              </div>
+              <div class="drawer-side z-30">
+                <label
+                  for="my-drawer-4"
+                  aria-label="close sidebar"
+                  class="drawer-overlay"></label>
+                <div class="w-[50vw] h-full bg-base-300 drawer-content flex justify-between"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <Heading size="xs" fontweight="normal" fontstyle="sans"
+            >{entry.data.origin}</Heading
+          >
+          <div class="card-actions">
+            <Heading fontweight="medium" fontstyle="sans"
+              >{entry.data.price}</Heading
+            >
+            <Heading size="xs" fontweight="light" fontstyle="sans"
+              >/{entry.data.weight}</Heading
+            >
+          </div>
+
+          <Content
+            components={{
+              h1: Heading,
+              h2: Heading,
+              h3: Heading,
+              h4: Heading,
+              h5: Heading,
+              h6: Heading,
+              ul: ListUnordered,
+              li: ListItem,
+              p: Paragraph,
+            }}
+          />
+        </div>
+      </div>
+    </Container>
+  </div>
+</Layout>

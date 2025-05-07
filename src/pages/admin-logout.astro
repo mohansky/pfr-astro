@@ -1,0 +1,10 @@
+---
+// src/pages/admin-logout.astro
+// Clear the auth cookie
+Astro.cookies.delete('admin-auth', {
+  path: '/'
+});
+
+// Redirect to login page
+return Astro.redirect('/admin-login');
+---
