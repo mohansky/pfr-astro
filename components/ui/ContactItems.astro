@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface ContactInfo {
+  link: string;
+  icon: string;
+  text: string;
+}
+
+interface Props {
+  contact: ContactInfo[];
+}
+
+const { contact } = Astro.props;
+---
+
+<ul class="space-y-5">
+  {
+    contact.map((item) => (
+      <li class="group">
+        <a
+          href={item.link}
+          class="flex text-2xl group-hover:opacity-50"
+          title={item.text}
+        >
+          <Icon name={item.icon} class="w-10 h-10 mr-2 my-auto" />
+          {item.text}
+        </a>
+      </li>
+    ))
+  }
+</ul>

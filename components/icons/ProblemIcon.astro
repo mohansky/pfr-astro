@@ -1,0 +1,17 @@
+---
+import IconBiodiversityCollapse from '@/content/site/images/problem/IconBiodiversityCollapse.astro';
+import IconClimateChange from '@/content/site/images/problem/IconClimateChange.astro';
+import IconEconomicDamage from '@/content/site/images/problem/IconEconomicDamage.astro';
+import IconInvasiveFish from '@/content/site/images/problem/IconInvasiveFish.astro';
+
+export interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props;
+---
+
+{icon === "IconBiodiversityCollapse" && <IconBiodiversityCollapse />}
+{icon === "IconClimateChange" && <IconClimateChange />}
+{icon === "IconInvasiveFish" && <IconInvasiveFish />}
+{icon === "IconEconomicDamage" && <IconEconomicDamage />}
