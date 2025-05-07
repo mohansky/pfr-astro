@@ -73,7 +73,7 @@ const siteCollection = defineCollection({
       goals: z.array(
         z.object({
           idx: z.number(),
-          image: image(),
+          icon: z.string(),
           title: z.string(),
         })
       ),
