@@ -14,7 +14,17 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [mdx(), icon(), react(), sitemap(), partytown()],
+  integrations: [
+    mdx(),
+    icon(),
+    react(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.8,
+      lastmod: new Date("2025-05-05"),
+    }),
+    partytown(),
+  ],
   env: {
     schema: {
       RESEND_API_KEY: envField.string({
@@ -42,6 +52,11 @@ export default defineConfig({
         context: "server",
         access: "secret",
         optional: false,
+      }),
+      GTM: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
       }),
     },
   },
