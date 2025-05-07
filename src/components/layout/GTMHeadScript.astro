@@ -2,8 +2,7 @@
 const gtmId = import.meta.env.GTM;
 ---
 
-{gtmId && (
-  <Fragment> 
+{gtmId && ( 
     <script type="text/partytown" is:inline define:vars={{gtmId}}>
     (function (w, d, s, l, i) {
       w[l] = w[l] || [];
@@ -14,7 +13,6 @@ const gtmId = import.meta.env.GTM;
       j.async = true;
       j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
       f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", gtmId);
-    </script> 
-  </Fragment>
+    })(window, document, "script", "dataLayer", {gtmId});
+    </script>  
 )}
