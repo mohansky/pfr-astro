@@ -1,9 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import WaveDivider from "../ui/WaveDivider.astro";
 import Container from "../ui/Container.astro";
 import Heading from "../ui/Heading.astro";
+import GoalsIcon from "../icons/GoalsIcon.astro";
 const siteData = await getCollection("siteCollection");
 const siteInfo = siteData[0].data;
 const site = siteInfo;
@@ -24,14 +24,7 @@ const goals = site.goals;
         goals.map((goal) => (
           <div class="card">
             <figure>
-              <Image
-                src={goal.image}
-                alt={goal.title}
-                width="240"
-                height="240"
-                class="rounded-4xl"
-                title={goal.title}
-              />
+              <GoalsIcon icon={goal.icon} />
             </figure>
           </div>
         ))
