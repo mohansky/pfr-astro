@@ -6,14 +6,15 @@ import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://pawsforrivers.com',
+  site: "https://pawsforrivers.com",
   output: "server",
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [mdx(), icon(), react(), sitemap()],
+  integrations: [mdx(), icon(), react(), sitemap(), partytown()],
   env: {
     schema: {
       RESEND_API_KEY: envField.string({
@@ -31,7 +32,7 @@ export default defineConfig({
         context: "server",
         access: "secret",
         optional: false,
-      }), 
+      }),
       ADMIN_USERNAME: envField.string({
         context: "server",
         access: "secret",
