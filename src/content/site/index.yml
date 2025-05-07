@@ -16,7 +16,7 @@ site:
     url: https://www.mohankumar.dev
 
   copyright: Paws for Rivers
-  footnote: Eco-Friendly, Nutritious and Sustainable, Pet Food
+  footnote: Eco-Friendly, Nutritious and Sustainable Pet Food
   footnote1: Developed with ♥ and ♫ in Bangalore
   email: pawsforrivers@gmail.com
 
@@ -97,16 +97,16 @@ site:
   goalsSubtitle: We’re proud to make products that help pets thrive- and help protect native freshwater fish species in the wild.
   goals:
     - idx: 1
-      image: ./images/sd/12ResponsibleConsumption.svg
+      icon: ResponsibleConsumption
       title: Responsible Consumption
     - idx: 2
-      image: ./images/sd/13Climate.svg
+      icon: Climate
       title: Climate
     - idx: 3
-      image: ./images/sd/14LifeBelowWater.svg
+      icon: LifeBelowWater
       title: Life Below Water
     - idx: 4
-      image: ./images/sd/17Partnerships.svg
+      icon: Partnerships
       title: Partnerships
    
   teamTitle: Who we are
