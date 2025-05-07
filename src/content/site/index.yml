@@ -1,0 +1,189 @@
+site:
+  name: Paws for Rivers
+  title: Paws for Rivers | Wholesome nutrition- one fishy bite at a time.
+  description: Paws for Rivers a fishtastic solution for your pet’s nutritional needs- addressing joint, skin health and overall well-being.
+  basepath: https://www.pawsforrivers.com
+  ogImageURL: ./images/pfrlogo.svg
+  keywords:
+    - Eco-Conscious Pet Nutrition
+    - Conservation Through Consumption
+    - Turning Invasive Threats into Nutritional Opportunities
+    - Pets as Environmental Heroes
+
+  author:
+    name: Mohan Kumar
+    email: mohansky@gmail.com
+    url: https://www.mohankumar.dev
+
+  copyright: Paws for Rivers
+  footnote: Eco-Friendly, Nutritious and Sustainable, Pet Food
+  footnote1: Developed with ♥ and ♫ in Bangalore
+  email: pawsforrivers@gmail.com
+
+  hero:
+    - bgImage: ./images/pfrlogo.svg
+      title: Paws for Rivers
+      subtitle: If it helps the fish and fills my dish- I'm in!
+      btnLink: /preorder
+      btnText: Pre-order Now!
+
+  links:
+    - text: Home
+      link: /
+    - text: About
+      link: /about
+    - text: Products
+      link: /#products
+    - text: SDG
+      link: /#goals
+    - text: Contact
+      link: /#contact
+
+  intro:
+    - It all started with one light bulb moment- “What if we could fight invasive species by feeding them to our pets? Boom! Eco-friendly, tail wagging, purring, brilliance. 
+    - With over a decade of experience working on river ecosystems, we saw an opportunity to flip the script- turning an environmental challenge into a sustainable, nutritious solution to fulfill your pets needs and reduce your environmental pawprint. 
+
+  aboutTitle: Fishtastic solution for your pet’s nutritional needs- addressing joint, skin health and overall well-being.
+  aboutVideo: ./images/fish-bg.mp4
+  treatsTitle: Pet Treats
+  treatsSubtitle: Wholesome nutrition- one fishy bite at a time. Pre-order now!
+  treats:
+    - idx: 1
+      name: Tilapia Bites
+      origin: Africa
+      image: ./images/treats/cat-treat.jpg
+    - idx: 2
+      name: Catfish Feast
+      origin: South America
+      image: ./images/treats/cat-treat.jpg
+
+  problemTitle: India’s freshwater ecosystems are collapsing under invasive fish species.
+  problem:
+    - idx: 1
+      text: Alien invasive fish are wiping out native biodiversity, threatening freshwater ecosystems.
+      icon: IconInvasiveFish
+    - idx: 2
+      text: Climate change & floods are accelerating their spread, worsening the crisis.
+      icon: IconClimateChange
+    - idx: 3
+      text: ₹8.3-11.9 trillion in economic damage due to invasive fish in India.
+      icon: IconEconomicDamage
+    - idx: 4
+      text: 75% of pet food uses marine fish, accelerating biodiversity collapse.
+      icon: IconBiodiversityCollapse
+
+  missionTitle: Instead of treating invasive fish as waste, we turn them into a scalable, sustainable alternative to ocean-based pet food.
+  missions:
+    - idx: 1
+      text: Directly removes invasive species, restoring native biodiversity.
+      icon: IconCatch
+    - idx: 2
+      text: Replaces marine fish in pet food → reduces pressure on ocean ecosystems.
+      icon: IconMarineFish
+    - idx: 3
+      text: 100% sustainable, nutritious, and vet approved pet food.
+      icon: IconVetApproved
+    - idx: 4
+      text: Circular model → every purchase actively restores freshwater habitats.
+      icon: IconCircularModel
+
+  whythispetfoodTitle: Why this pet food
+  whythispetfoodText:
+    - Our meals and treats act as a supplement to meat based proteins and a replacement to ocean fish.
+    - Skin irritation and inflammation in pets can often be caused by a surplus of omega 6 fatty acids in the body, which are commonly found in vegetable oils and chicken fat-
+    - Omega 3 found naturally in fish can counteract the effects of omega 6.
+
+  goalsTitle: Sustainable Development Goals
+  goalsSubtitle: We’re proud to make products that help pets thrive- and help protect native freshwater fish species in the wild.
+  goals:
+    - idx: 1
+      image: ./images/sd/12ResponsibleConsumption.svg
+      title: Responsible Consumption
+    - idx: 2
+      image: ./images/sd/13Climate.svg
+      title: Climate
+    - idx: 3
+      image: ./images/sd/14LifeBelowWater.svg
+      title: Life Below Water
+    - idx: 4
+      image: ./images/sd/17Partnerships.svg
+      title: Partnerships
+   
+  teamTitle: Who we are
+  teamSubtitle: We are a bunch of people who care for the planet and would like to make a difference.
+  team:
+    - idx: 1
+      name: Neeti Mahesh
+      role: Founder
+      description: A river ecologist and conservationist, Neethi is delving deep into creating sustainable pet food that connects fish, pets, rivers, and people. With her expertise in ecological restoration, she’s building a mission-driven brand that nourishes pets while healing ecosystems.
+      image: ./images/team/neeti.jpg
+    - idx: 2
+      name: Gautam Krishnankutty
+      role: Chef
+      description: Chef Gautam, pet parent to Khimchi, crafts fish-based recipes for Paws for Rivers. Known as Gonzo, he’s passionate about pets, wildlife, and creating nutritious feasts.
+      image: ./images/team/gautam.jpg
+    - idx: 3
+      name: Sayan Deb Sinha
+      role: Product & Growth
+      description: Sayan drives strategy, growth, and productmarket fit at Paws for Rivers. With 10+ years in product marketing and innovation, he’s focused on scaling impact-driven ventures.
+      image: ./images/team/sayan.jpg
+
+  galleryTitle: Get to know some invasive fish
+  fish:
+    - idx: 1
+      origin: Middle East, Central and South Africa.
+      name: African Catfish
+      image: ./images/fish/African-Catfish.jpg
+    - idx: 3
+      origin: South America
+      name: Alligator Gar
+      image: ./images/fish/Alligator-Gar.jpg
+    - idx: 4
+      origin: South America
+      name: Arapaima
+      image: ./images/fish/Arapaima.jpg
+    - idx: 5
+      origin: South America
+      name: Armored Catfish
+      image: ./images/fish/Armored-Catfish.jpg
+    - idx: 8
+      origin: South America
+      name: Mozambique Tilapia
+      image: ./images/fish/Mozambique-Tilapia.jpg
+    - idx: 7
+      origin: Africa
+      name: Nile Tilapia
+      image: ./images/fish/Nile-Tilapia.jpg
+    - idx: 2
+      origin: South America
+      name: Red Bellied Pacu
+      image: ./images/fish/Red-Bellied-Pacu.jpg
+    - idx: 6
+      origin: South America
+      name: Red Bellied Piranha
+      image: ./images/fish/Red-Bellied-Piranha.jpg
+
+  contactTitle: Contact
+  contactSubtitle: Get in touch
+
+  contact:
+    - link: tel:+918861646582
+      icon: ph:phone-light
+      text: +91 886 164 6582
+      name: Contact
+    - link: mailto:pawsforrivers@gmail.com
+      icon: ph:envelope-simple-light
+      text: pawsforrivers@gmail.com
+      name: Contact
+
+  socialsTitle: Follow us
+  socials:
+    - link: https://www.facebook.com/pawsforrivers/
+      icon: hugeicons:facebook-01
+      text: Facebook
+    - link: https://www.instagram.com/pawsforrivers/
+      icon: hugeicons:instagram
+      text: Instagram
+    - link: https://www.youtube.com/pawsforrivers/"
+      icon: hugeicons:youtube
+      text: Youtube
