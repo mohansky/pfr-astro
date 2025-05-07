@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pawsforrivers.com/sitemap-index.xml
+Sitemap: https://pawsforrivers.com/sitemap.xml
