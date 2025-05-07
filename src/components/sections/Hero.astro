@@ -4,6 +4,7 @@ import HeroBgFish from "../animatedimages/HeroBgFish.astro";
 import HeroCatImage from "../animatedimages/HeroCatImage.astro";
 import HeroDogImage from "../animatedimages/HeroDogImage.astro";
 import Heading from "../ui/Heading.astro";
+import HeroBgWaves from "../animatedimages/HeroBgWaves.astro";
 
 const siteData = await getCollection("siteCollection");
 const siteInfo = siteData[0].data;
@@ -13,7 +14,8 @@ const hero = site.hero;
 
 {
   hero.map((heroItem) => (
-    <div class="hero min-w-screen min-h-screen relative bg-[#00ADD1] overflow-hidden">
+    <div class="hero min-w-screen min-h-screen relative overflow-hidden">
+      <HeroBgWaves />
       <HeroCatImage />
       <HeroDogImage />
       <HeroBgFish />
