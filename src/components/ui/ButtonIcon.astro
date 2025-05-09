@@ -1,0 +1,21 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { link, icon, text } = Astro.props;
+---
+
+<span class="group">
+  <a href={link}>
+    <button class="flex items-center btn btn-link btn-lg p-0">
+      <Icon
+        name={icon}
+        class="w-6 h-6 text-neutral dark:text-neutral-content group-hover:opacity-50 mr-1 transition delay-150 duration-300 ease-in-out"
+      />
+      <p
+        class="text-neutral dark:text-neutral-content group-hover:opacity-50 transition delay-150 duration-300 ease-in-out"
+      >
+        {text}
+      </p>
+    </button>
+  </a>
+</span>

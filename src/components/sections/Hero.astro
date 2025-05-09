@@ -1,0 +1,122 @@
+---
+import { getCollection } from "astro:content";
+import HeroBgFish from "../animatedimages/HeroBgFish.astro";
+import HeroCatImage from "../animatedimages/HeroCatImage.astro";
+import HeroDogImage from "../animatedimages/HeroDogImage.astro";
+import Heading from "../ui/Heading.astro";
+import HeroBgWaves from "../animatedimages/HeroBgWaves.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const hero = site.hero;
+---
+
+ 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" is:inline></script> 
+  <script src="https://unpkg.com/split-type" is:inline></script>
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => { 
+      const splitHeadings = document.querySelectorAll('.split-heading');
+      
+      splitHeadings.forEach(heading => {
+        // Split each heading into characters
+        const splitText = new SplitType(heading, { 
+          types: 'words,chars',
+          tagName: 'span'
+        });
+        
+        // Create the animation for each character
+        gsap.from(splitText.chars, {
+          opacity: 0,
+          y: 50,
+          rotationX: 90,
+          stagger: 0.05,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          delay: 0.3
+        });
+      });
+      
+      // Animate the second heading
+      const secondHeadings = document.querySelectorAll('.second-heading');
+      secondHeadings.forEach(heading => {
+        gsap.from(heading, {
+          opacity: 0,
+          x: -40,
+          duration: 1,
+          delay: 0.8,
+          ease: "power2.out"
+        });
+      });
+      
+      // Animate the subtitle
+      const subtitles = document.querySelectorAll('.subtitle');
+      subtitles.forEach(subtitle => {
+        gsap.from(subtitle, {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          delay: 1.2,
+          ease: "power3.out"
+        });
+      });
+      
+      // Animate the button
+      const buttons = document.querySelectorAll('.hero-button');
+      buttons.forEach(button => {
+        gsap.from(button, {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.5,
+          delay: 1.5,
+          ease: "back.out(1.7)"
+        });
+      });
+    });
+  </script>
+
+
+{
+  hero.map((heroItem) => (
+    <div class="hero min-w-screen min-h-screen relative overflow-hidden">
+      <HeroBgWaves />
+      <HeroCatImage />
+      <HeroDogImage />
+      <HeroBgFish />
+
+      <div class="hero-content text-neutral-content mt-32 md:-ml-75 md:mt-0 z-10">
+        <div class="max-w-2xl space-y-3">
+          <Heading size="xxxl" fontstyle="serif" class="mb-2 split-heading" as="h1" >
+            Paws
+          </Heading>
+          <Heading size="xxl" class="mb-8 split-heading" as="h1">
+            For Rivers
+          </Heading>
+
+          <Heading
+            size="xl"
+            fontstyle="serif"
+            fontweight="light"
+             class="text-balance mb-10 subtitle"
+          >
+            {heroItem.subtitle}
+          </Heading>
+          <div>
+            <a
+              href={heroItem.btnLink}
+              class="btn btn-warning btn-lg hero-button uppercase"
+              title={heroItem.btnText}
+            >
+              <span>{heroItem.btnText}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))
+}
+
+ 
+

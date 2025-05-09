@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content"; 
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import GoalsIcon from "../icons/GoalsIcon.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const goals = site.goals;
+---
+ 
+<section id="goals" class="bg-success">
+  <Container class="pt-20 pb-36" width="marginx">
+    <Heading size="xl" class="text-center mb-10">
+      {site.goalsTitle}
+    </Heading>
+    <Heading size="md" class="text-center mb-10" fontweight="normal">
+      {site.goalsSubtitle}
+    </Heading>
+    <div class="grid place-content-center grid-cols-2 lg:grid-cols-4 gap-10">
+      {
+        goals.map((goal) => (
+          <div class="card">
+            <figure>
+              <GoalsIcon icon={goal.icon} />
+            </figure>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

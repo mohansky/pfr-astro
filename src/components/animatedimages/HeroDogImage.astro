@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import dog from "@/assets/cooldogo.png";
+---
+<div
+  class="image-container absolute bottom-0 w-full left-10 lg:-bottom-10 lg:left-150 lg:w-1/2 lg:h-2/3 z-10 opacity-0"
+  id="dog-image-wrapper"
+>
+  <Image
+    src={dog}
+    alt="Paws for Rivers"
+    title="Paws for Rivers"
+    width="1920"
+    height="1080"
+    id="animated-image"
+    format="webp"
+    quality={80}
+    class="h-[50vh] lg:h-[70vh] object-cover"
+  />
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" is:inline></script>
+<script is:inline>
+  function runAnimation() {
+    const imageContainer = document.getElementById("dog-image-wrapper");
+    
+    if (imageContainer) {
+      console.log("Found image container, setting up animation");
+      
+      // Set initial state with GSAP
+      gsap.set(imageContainer, {
+        y: 200,
+        opacity: 0
+      });
+      
+      // Create animation with GSAP
+      gsap.to(imageContainer, {
+        y: 0,
+        opacity: 1,
+        duration: 2.8,
+        delay: 1.25,
+        ease: "elastic.out(1, 0.75)", // More bouncy than the cat animation
+        onStart: () => console.log("Starting animation")
+      });
+    } else {
+      console.error("Image container not found");
+    }
+  }
+  
+  // Run animation when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runAnimation);
+  } else {
+    runAnimation();
+  }
+</script>

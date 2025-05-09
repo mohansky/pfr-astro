@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import cat from "@/assets/kitty-on-branch.png";
+---
+
+<div
+  class="absolute opacity-0 bottom-50 -left-1 lg:-left-4 w-full h-2/3 z-10"
+  id="cat-image-wrapper"
+>
+  <Image
+    src={cat}
+    alt="Paws for Rivers"
+    title="Paws for Rivers"
+    width={720}
+    height={640}
+    id="animated-image"
+    loading="eager"
+    format="webp"
+    quality={80}
+  />
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" is:inline></script>
+<script is:inline>
+  function runAnimation() {
+    const imageContainer = document.getElementById("cat-image-wrapper");
+    
+    if (imageContainer) {
+      console.log("Found image container, setting up animation");
+      
+      // Set initial state (now handled by GSAP)
+      gsap.set(imageContainer, {
+        x: -200,
+        opacity: 0
+      });
+      
+      // Create animation with GSAP
+      gsap.to(imageContainer, {
+        x: 0,
+        opacity: 1,
+        duration: 2.5,
+        delay: 0.75,
+        ease: "elastic.out(1, 0.5)", // Similar to spring animation in motion
+        onStart: () => console.log("Starting animation")
+      });
+    } else {
+      console.error("Image container not found");
+    }
+  }
+  
+  // Run animation when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runAnimation);
+  } else {
+    runAnimation();
+  }
+</script>

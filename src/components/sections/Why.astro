@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import PFRLogoOutline from "../icons/PFRLogoOutline.astro";
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Paragraph from "../ui/Paragraph.astro";
+import WaveDivider from "../ui/WaveDivider.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const whyTitle = siteInfo.whyTitle;
+const whyText = siteInfo.whyText;
+---
+
+<WaveDivider selectedColor="fill-success" class="z-20" />
+<section id="whythispetfood" class="bg-success py-20">
+  <Container width="marginx">
+    <div class="relative grid lg:grid-cols-3 items-center gap-4">
+      <PFRLogoOutline
+        class="hidden lg:block lg:min-w-64 stroke-warning stroke-0"
+      />
+      <PFRLogoOutline
+        class="w-full absolute -top-14 opacity-10 block lg:hidden stroke-warning stroke-0"
+      />
+      <div class="col-span-2">
+        <Heading size="xl" class="mb-10 uppercase">
+          {whyTitle}
+        </Heading>
+        {
+          whyText.map((item) => (
+            <Paragraph size="lg">
+              <strong> {item.title}:</strong> {item.text}
+            </Paragraph>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>

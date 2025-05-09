@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content"; 
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro"; 
+import WaveDivider from "../ui/WaveDivider.astro";
+
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const revolutionizing = siteInfo.revolutionizing;
+---
+
+<WaveDivider selectedColor="fill-warning" class="z-20" />
+<section class="bg-warning py-20 pb-30">
+  <Container width="marginx">
+    {
+      revolutionizing.map((paragraph) => (
+        <Heading size="lg" class="text-center">
+          {paragraph}
+        </Heading>
+      ))
+    }
+  </Container>
+</section>

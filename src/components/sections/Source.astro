@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Heading from "../ui/Heading.astro";
+const siteData = await getCollection("siteCollection");
+const siteInfo = siteData[0].data;
+const site = siteInfo;
+const source = site.intro;
+---
+
+<div class="relative bg-success pt-60 pb-20 z-10">
+  <Heading size="xxl" class="text-center text-balance max-w-5xl mx-auto mb-15">
+    What’s fish got to do with it...
+  </Heading>
+  <div class="pb-20">
+    <Heading size="lg" class="text-center text-balance max-w-5xl mx-auto">
+      It all started with one light bulb moment -
+    </Heading>
+    {
+      source.map((sentence) => (
+        <Heading
+          size="lg"
+          class="text-center text-balance max-w-5xl mx-auto mb-6"
+        >
+          {sentence}
+        </Heading>
+      ))
+    }
+  </div>
+</div>

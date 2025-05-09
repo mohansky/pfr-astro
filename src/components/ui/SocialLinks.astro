@@ -1,0 +1,32 @@
+---
+import { cn } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+
+interface Social {
+  text: string;
+  link: string;
+  icon: string;
+}
+
+interface Props {
+  socials: Social[];
+  class?: string;
+}
+
+const { socials, class: className } = Astro.props;
+---
+
+<ul class="flex space-x-5">
+  {
+    socials.map((item) => (
+      <li class="group">
+        <a href={item.link} title={item.text}>
+          <Icon
+            name={item.icon}
+            class={cn("group-hover:opacity-50", className)}
+          />
+        </a>
+      </li>
+    ))
+  }
+</ul>
