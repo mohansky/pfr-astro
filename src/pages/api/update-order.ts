@@ -18,56 +18,82 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     const email = formData.get("email")?.toString();
     const phone = formData.get("phone")?.toString();
     const address = formData.get("address")?.toString();
-    const wetFood250 = Number(formData.get("wetFood250")?.toString() || "0");
-    const wetFood100 = Number(formData.get("wetFood100")?.toString() || "0");
-    const treats150 = Number(formData.get("treats150")?.toString() || "0");
+    const ymy_cookies_cats = Number(
+      formData.get("ymy_cookies_cats")?.toString() || "0"
+    );
+    const ymy_cookies_dogs = Number(
+      formData.get("ymy_cookies_dogs")?.toString() || "0"
+    );
+    const tilapia_feast = Number(
+      formData.get("tilapia_feast")?.toString() || "0"
+    );
+    const cat_and_mousse = Number(
+      formData.get("cat_and_mousse")?.toString() || "0"
+    );
+    const freeze_dried_fish = Number(
+      formData.get("freeze_dried_fish")?.toString() || "0"
+    );
     const status = formData.get("status")?.toString();
 
-    // Validate required fields
-    if (!orderId || !fullName || !email || !phone || !address || wetFood250 === null || wetFood100 === null || treats150 === null || !status) {
+    // Validate required fields - fixed the validation logic
+    if (
+      !orderId || 
+      !fullName || 
+      !email || 
+      !phone || 
+      !address || 
+      ymy_cookies_cats === null || 
+      ymy_cookies_dogs === null || 
+      tilapia_feast === null || 
+      cat_and_mousse === null || 
+      freeze_dried_fish === null || 
+      !status
+    ) {
       return redirect("/orders?error=Missing required fields");
     }
 
     // Valid status values
     const validStatuses = [
       "pending",
-      "processing", 
-      "shipped", 
-      "delivered", 
-      "cancelled", 
-      "refunded"
+      "processing",
+      "shipped",
+      "delivered",
+      "cancelled",
+      "refunded",
     ];
-
-    if (!validStatuses.includes(status.toString())) {
+    
+    if (!validStatuses.includes(status)) {
       return redirect("/orders?error=Invalid status value");
     }
 
     // Connect to database
     const dbUrl = getSecret("TURSO_DATABASE_URL");
     const authToken = getSecret("TURSO_AUTH_TOKEN");
-
+    
     if (!dbUrl || !authToken) {
       throw new Error("Missing Turso database credentials");
     }
-
+    
     const db = createClient({
       url: dbUrl,
       authToken: authToken,
     });
 
-    // Update the order
+    // Update the order - fixed parameter order in the query
     await db.execute(
-      "UPDATE orders SET full_name = ?, email = ?, phone = ?, address = ?, wet_food_250_qty = ?, wet_food_100_qty = ?, treats_150_qty = ?, status = ? WHERE id = ?",
+      "UPDATE orders SET full_name = ?, email = ?, phone = ?, address = ?, ymy_cookies_cats_qty = ?, ymy_cookies_dogs_qty = ?, tilapia_feast_qty = ?, cat_and_mousse_qty = ?, freeze_dried_fish_qty = ?, status = ? WHERE id = ?",
       [
         fullName,
         email,
         phone,
         address,
-        wetFood250,
-        wetFood100,
-        treats150,
+        ymy_cookies_cats,
+        ymy_cookies_dogs,
+        tilapia_feast,
+        cat_and_mousse,
+        freeze_dried_fish,
         status,
-        orderId,
+        orderId
       ]
     );
 

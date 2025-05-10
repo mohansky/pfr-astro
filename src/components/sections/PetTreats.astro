@@ -11,8 +11,12 @@ const site = siteInfo;
 const treatsData = await getCollection("treatsCollection");
 const treatsInfo = treatsData.map((treat) => ({
   slug: treat.id,
+  published: treat.data.published,
   name: treat.data.name,
+  description: treat.data.description,
+  for: treat.data.for,
   origin: treat.data.origin,
+  source: treat.data.source,
   image: treat.data.image,
   price: treat.data.price,
   weight: treat.data.weight,
@@ -20,6 +24,7 @@ const treatsInfo = treatsData.map((treat) => ({
   comingSoon: treat.data.comingSoon,
 }));
 const treats = treatsInfo.sort((a, b) => a.id - b.id);
+const publishedTreats = treats.filter((treat) => treat.published === true);
 ---
 
 <section id="products" class="py-20 bg-base-100">
@@ -31,11 +36,11 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
         fontstyle="serif"
         class="mb-5 text-balance text-center"
       >
-        {site.treatsTitle} 
+        {site.treatsTitle}
       </Heading>
       <Heading fontweight="normal" class="mb-5 text-balance text-center">
         {site.treatsSubtitle}
-      </Heading >
+      </Heading>
     </div>
 
     <div class="flex flex-col items-center justify-center">
@@ -43,36 +48,61 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
         <a href="/preorder">Pre-order</a>
       </button>
     </div>
-<!-- Products Hidden -->
-    <!-- <div
-      class="grid place-content-center md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto"
-    >
+    <!-- Products Hidden -->
+    <div class="grid place-content-center md:grid-cols-2 gap-10 mx-auto">
       {
-        treats.map((treat) => (
+        publishedTreats.map((treat) => (
           <div class="card bg-base-100 w-full shadow-none">
             <figure class="md:px-5 md:pt-5 lg:px-10 lg:pt-10">
               <div class="relative">
-                <Image
+                {/* <Image
                   src={treat.image}
                   alt={treat.name || "Paws for Rivers"}
                   title={treat.name}
                   width={360}
                   height={360}
                   class="rounded-xl"
-                />
-                {treat.comingSoon && (
+                />  {treat.comingSoon && (
                   <div class="badge badge-success absolute top-0 right-0">
                     Coming Soon
                   </div>
-                )}
+                )} */}
               </div>
             </figure>
             <div class="card-body items-center text-center">
-              <div class="flex flex-col lg:flex-row justify-evely items-center gap-3">
-                <h2 class="card-title">{treat.name}</h2>
-                <p>{treat.origin}</p>
+              <div class="flex flex-col justify-evely items-center">
+                <span class="flex items-center gap-2">
+                  <Heading size="lg" fontweight="medium" fontstyle="sans">
+                    {treat.name}
+                  </Heading>
+                  {treat.comingSoon && (
+                    <div class="badge  badge-xs badge-warning">Coming Soon</div>
+                  )}
+                </span>
+                <Heading
+                  size="xs"
+                  fontweight="light"
+                  fontstyle="sans"
+                  class="mb-3"
+                >
+                  For {treat.for}
+                </Heading>
+                <Heading
+                  size="md"
+                  fontweight="light"
+                  fontstyle="sans"
+                  class="text-balance mb-3"
+                >
+                  {treat.description}
+                </Heading>
+                <Heading size="xxxs" fontweight="light" fontstyle="sans">
+                  <strong> Source: </strong> {treat.source}
+                </Heading>
+                <Heading size="xxxs" fontweight="light" fontstyle="sans">
+                  <strong> Origin: </strong> {treat.origin}
+                </Heading>
               </div>
-              <div class="card-actions flex justify-evenly items-center gap-3">
+              <div class="card-actions flex  justify-evenly items-center gap-3">
                 <Heading fontweight="medium" fontstyle="sans">
                   {treat.price}
                 </Heading>
@@ -80,16 +110,16 @@ const treats = treatsInfo.sort((a, b) => a.id - b.id);
                   /{treat.weight}
                 </Heading>
               </div>
-              <div class="card-actions">
+              {/* <div class="card-actions">
                 <button class="btn btn-warning">
                   <a href="/preorder">Pre Order</a>
-                  {/* <a href={`/treats/${treat.slug}`}>Pre Order</a> */}
+                   <a href={`/treats/${treat.slug}`}>Pre Order</a>  
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         ))
       }
-    </div> -->
+    </div>
   </Container>
 </section>

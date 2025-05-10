@@ -138,7 +138,7 @@ console.log(inputErrors);
 
       <div class="space-y-4">
         <!-- Product 1 -->
-        <div class="flex items-center gap-4">
+        <!-- <div class="flex items-center gap-4">
           <label class="flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -169,10 +169,10 @@ console.log(inputErrors);
               ><PlusIcon class="w-6 h-6" /></button
             >
           </div>
-        </div>
+        </div> -->
 
         <!-- Product 2 -->
-        <div class="flex items-center gap-4">
+        <!-- <div class="flex items-center gap-4">
           <label class="flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -206,10 +206,10 @@ console.log(inputErrors);
               <PlusIcon class="w-6 h-6" />
             </button>
           </div>
-        </div>
+        </div> -->
 
         <!-- Product 3 -->
-        <div class="flex items-center gap-4">
+        <!-- <div class="flex items-center gap-4">
           <label class="flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -228,6 +228,176 @@ console.log(inputErrors);
             <input
               type="number"
               name="quantity-treats-150"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase"
+              ><PlusIcon class="w-6 h-6" /></button
+            >
+          </div>
+        </div> -->
+
+        <!-- Product 4 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="ymy-cookies-cats"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Yummy in my tummy - Cookies for Cats</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled><MinusIcon class="w-6 h-6" /></button
+            >
+            <input
+              type="number"
+              name="ymy-cookies-cats"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase"
+              ><PlusIcon class="w-6 h-6" /></button
+            >
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="ymy-cookies-dogs"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Yummy in my tummy - Cookies for Dogs</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled><MinusIcon class="w-6 h-6" /></button
+            >
+            <input
+              type="number"
+              name="ymy-cookies-dogs"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase"
+              ><PlusIcon class="w-6 h-6" /></button
+            >
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="tilapia-feast"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Tilapia Feast</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled><MinusIcon class="w-6 h-6" /></button
+            >
+            <input
+              type="number"
+              name="tilapia-feast"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase"
+              ><PlusIcon class="w-6 h-6" /></button
+            >
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="cat-and-mousse"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Cat and Mousse</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled><MinusIcon class="w-6 h-6" /></button
+            >
+            <input
+              type="number"
+              name="cat-and-mousse"
+              class="input input-bordered w-16 text-center quantity-input"
+              value="0"
+              min="0"
+              max="10"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-increase"
+              ><PlusIcon class="w-6 h-6" /></button
+            >
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="flex items-center gap-4">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              name="products"
+              value="freeze-dried-fish"
+              class="checkbox product-checkbox"
+            />
+            <span class="ml-2">Pawsome fish bites</span>
+          </label>
+          <div class="flex items-center ml-auto">
+            <button
+              type="button"
+              class="btn btn-sm btn-square quantity-decrease"
+              disabled><MinusIcon class="w-6 h-6" /></button
+            >
+            <input
+              type="number"
+              name="freeze-dried-fish"
               class="input input-bordered w-16 text-center quantity-input"
               value="0"
               min="0"

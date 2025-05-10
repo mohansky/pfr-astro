@@ -134,6 +134,8 @@ const treatsCollection = defineCollection({
       price: z.string().optional(),
       weight: z.string().optional(),
       origin: z.string().optional(),
+      source: z.string().optional(),
+      for: z.string().optional(),
       image: image(),
     }),
 });

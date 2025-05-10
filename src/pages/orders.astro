@@ -29,9 +29,11 @@ interface Order {
   email: string;
   phone: string;
   address: string;
-  wet_food_250_qty: number;
-  wet_food_100_qty: number;
-  treats_150_qty: number;
+  ymy_cookies_cats_qty: number;
+  ymy_cookies_dogs_qty: number;
+  tilapia_feast_qty: number;
+  cat_and_mousse_qty: number;
+  freeze_dried_fish_qty: number;
   created_at: string;
   status: string; // New status field
 }
@@ -84,9 +86,11 @@ try {
     email: row.email as string,
     phone: row.phone as string,
     address: row.address as string,
-    wet_food_250_qty: row.wet_food_250_qty as number,
-    wet_food_100_qty: row.wet_food_100_qty as number,
-    treats_150_qty: row.treats_150_qty as number,
+    ymy_cookies_cats_qty: row.ymy_cookies_cats_qty as number,
+    ymy_cookies_dogs_qty: row.ymy_cookies_dogs_qty as number,
+    tilapia_feast_qty: row.tilapia_feast_qty as number,
+    cat_and_mousse_qty: row.cat_and_mousse_qty as number,
+    freeze_dried_fish_qty: row.freeze_dried_fish_qty as number,
     created_at: row.created_at as string,
     status: (row.status as string) || "pending", // Default to pending if null
   }));
@@ -266,9 +270,11 @@ const formatStatus = (status: string): string => {
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th class="text-center">Wet Food 250g</th>
-                    <th class="text-center">Wet Food 100g</th>
-                    <th class="text-center">Treats 150g</th>
+                    <th class="text-center">Cookies Cats</th>
+                    <th class="text-center">Cookies Dogs</th>
+                    <th class="text-center">Tilapia Feast</th>
+                    <th class="text-center">Cat and Mousse</th>
+                    <th class="text-center">Freeze Dried Fish</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Actions</th>
@@ -293,9 +299,11 @@ const formatStatus = (status: string): string => {
                         </a>
                       </td>
                       <td>{order.address}</td>
-                      <td class="text-center">{order.wet_food_250_qty}</td>
-                      <td class="text-center">{order.wet_food_100_qty}</td>
-                      <td class="text-center">{order.treats_150_qty}</td>
+                      <td class="text-center">{order.ymy_cookies_cats_qty}</td>
+                      <td class="text-center">{order.ymy_cookies_dogs_qty}</td>
+                      <td class="text-center">{order.tilapia_feast_qty}</td>
+                      <td class="text-center">{order.cat_and_mousse_qty}</td>
+                      <td class="text-center">{order.freeze_dried_fish_qty}</td>
                       <td>
                         <span
                           class={`badge badge-sm ${getStatusColor(order.status)}`}
@@ -401,7 +409,7 @@ const formatStatus = (status: string): string => {
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <div class="form-control">
+                <!-- <div class="form-control">
                   <label class="label" for="wetFood250">
                     <span class="label-text">Wet Food 250g</span>
                   </label>
@@ -413,9 +421,9 @@ const formatStatus = (status: string): string => {
                     min="0"
                     required
                   />
-                </div>
+                </div> -->
 
-                <div class="form-control">
+                <!-- <div class="form-control">
                   <label class="label" for="wetFood100">
                     <span class="label-text">Wet Food 100g</span>
                   </label>
@@ -427,9 +435,9 @@ const formatStatus = (status: string): string => {
                     min="0"
                     required
                   />
-                </div>
+                </div> -->
 
-                <div class="form-control">
+                <!-- <div class="form-control">
                   <label class="label" for="treats150">
                     <span class="label-text">Treats 150g</span>
                   </label>
@@ -441,25 +449,95 @@ const formatStatus = (status: string): string => {
                     min="0"
                     required
                   />
+                </div> -->
+
+                <div class="form-control">
+                  <label class="label" for="ymy_cookies_cats">
+                    <span class="label-text">Cookies Cats</span>
+                  </label>
+                  <input
+                    class="input input-bordered"
+                    id="ymy_cookies_cats"
+                    name="ymy_cookies_cats"
+                    type="number"
+                    min="0"
+                    required
+                  />
                 </div>
 
                 <div class="form-control">
-                  <label class="label" for="status">
-                    <span class="label-text">Status</span>
+                  <label class="label" for="ymy_cookies_dogs">
+                    <span class="label-text">Cookies Dogs</span>
                   </label>
-                  <select
-                    class="select select-bordered"
-                    id="status"
-                    name="status"
+                  <input
+                    class="input input-bordered"
+                    id="ymy_cookies_dogs"
+                    name="ymy_cookies_dogs"
+                    type="number"
+                    min="0"
                     required
-                  >
-                    {
-                      ORDER_STATUSES.map((status) => (
-                        <option value={status}>{formatStatus(status)}</option>
-                      ))
-                    }
-                  </select>
+                  />
                 </div>
+
+                <div class="form-control">
+                  <label class="label" for="tilapia_feast">
+                    <span class="label-text">Tilapia Feast</span>
+                  </label>
+                  <input
+                    class="input input-bordered"
+                    id="tilapia_feast"
+                    name="tilapia_feast"
+                    type="number"
+                    min="0"
+                    required
+                  />
+                </div>
+
+                <div class="form-control">
+                  <label class="label" for="cat_and_mousse">
+                    <span class="label-text">Cat and Mousse</span>
+                  </label>
+                  <input
+                    class="input input-bordered"
+                    id="cat_and_mousse"
+                    name="cat_and_mousse"
+                    type="number"
+                    min="0"
+                    required
+                  />
+                </div>
+
+                <div class="form-control">
+                  <label class="label" for="freeze_dried_fish">
+                    <span class="label-text">Freeze dried_fish</span>
+                  </label>
+                  <input
+                    class="input input-bordered"
+                    id="freeze_dried_fish"
+                    name="freeze_dried_fish"
+                    type="number"
+                    min="0"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-control flex flex-col">
+                <label class="label" for="status">
+                  <span class="label-text">Status</span>
+                </label>
+                <select
+                  class="select select-bordered"
+                  id="status"
+                  name="status"
+                  required
+                >
+                  {
+                    ORDER_STATUSES.map((status) => (
+                      <option value={status}>{formatStatus(status)}</option>
+                    ))
+                  }
+                </select>
               </div>
 
               <div class="modal-action">
@@ -585,9 +663,14 @@ const formatStatus = (status: string): string => {
     document.getElementById("email").value = order.email;
     document.getElementById("phone").value = order.phone;
     document.getElementById("address").value = order.address;
-    document.getElementById("wetFood250").value = order.wet_food_250_qty;
-    document.getElementById("wetFood100").value = order.wet_food_100_qty;
-    document.getElementById("treats150").value = order.treats_150_qty;
+    // document.getElementById("wetFood250").value = order.wet_food_250_qty;
+    // document.getElementById("wetFood100").value = order.wet_food_100_qty;
+    // document.getElementById("treats150").value = order.treats_150_qty;
+    document.getElementById("ymy_cookies_cats").value = order.ymy_cookies_cats_qty,
+    document.getElementById("ymy_cookies_dogs").value = order.ymy_cookies_dogs_qty,
+    document.getElementById("tilapia_feast").value = order.tilapia_feast_qty,
+    document.getElementById("cat_and_mousse").value = order.cat_and_mousse_qty,
+    document.getElementById("freeze_dried_fish").value = order.freeze_dried_fish_qty,
     document.getElementById("status").value = order.status || "pending";
 
     // Open the modal
@@ -629,9 +712,14 @@ const formatStatus = (status: string): string => {
     document.getElementById("email").value = order.email;
     document.getElementById("phone").value = order.phone;
     document.getElementById("address").value = order.address;
-    document.getElementById("wetFood250").value = order.wet_food_250_qty;
-    document.getElementById("wetFood100").value = order.wet_food_100_qty;
-    document.getElementById("treats150").value = order.treats_150_qty;
+    // document.getElementById("wetFood250").value = order.wet_food_250_qty;
+    // document.getElementById("wetFood100").value = order.wet_food_100_qty;
+    // document.getElementById("treats150").value = order.treats_150_qty;
+    document.getElementById("ymy_cookies_cats").value = order.ymy_cookies_cats_qty,
+    document.getElementById("ymy_cookies_dogs").value = order.ymy_cookies_dogs_qty,
+    document.getElementById("tilapia_feast").value = order.tilapia_feast_qty,
+    document.getElementById("cat_and_mousse").value = order.cat_and_mousse_qty,
+    document.getElementById("freeze_dried_fish").value = order.freeze_dried_fish_qty,
     document.getElementById("status").value = order.status || "pending";
 
     // Open the modal
