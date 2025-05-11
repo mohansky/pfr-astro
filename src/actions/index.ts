@@ -171,8 +171,8 @@ export const server = {
           from: "Paws for rivers <mail@mohankumar.dev>",
           to: [
             "mohansky@gmail.com",
-            // "pawsforrivers@gmail.com",
-            // "neetimahesh@gmail.com",
+            "pawsforrivers@gmail.com",
+            "neetimahesh@gmail.com",
             // `${formData.email}`,
           ],
           subject: `Preorder from ${formData.fullName}`,
