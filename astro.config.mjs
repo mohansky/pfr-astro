@@ -20,8 +20,13 @@ export default defineConfig({
     react(),
     sitemap({
       changefreq: "weekly",
-      priority: 0.8,
+      priority: 0.8, 
       lastmod: new Date("2025-05-05"),
+            filter: (page) =>
+        page !== 'https://pawsforrivers.com/admin-login/' &&
+        page !== 'https://pawsforrivers.com/admin-logout/' &&
+        page !== 'https://pawsforrivers.com/orders/' &&
+        page !== 'https://pawsforrivers.com/preorder/',
     }),
     partytown(),
   ],
