@@ -79,14 +79,14 @@ export const server = {
 
       if (formData["ymy-cookies-cats"] && formData["ymy-cookies-cats"] > 0) {
         selectedProducts.push({
-          name: "Yummy in my tummy - Cookies",
+          name: "Snack Attack - Cookies",
           quantity: formData["ymy-cookies-cats"],
         });
       }
 
       if (formData["ymy-cookies-dogs"] && formData["ymy-cookies-dogs"] > 0) {
         selectedProducts.push({
-          name: "Yummy in my tummy - Cookies",
+          name: "Snack Attack - Cookies",
           quantity: formData["ymy-cookies-dogs"],
         });
       }
@@ -172,7 +172,7 @@ export const server = {
           to: [
             "mohansky@gmail.com",
             "pawsforrivers@gmail.com",
-            "neeti.mahesh@gmail.com",
+            "neetimahesh@gmail.com",
             // `${formData.email}`,
           ],
           subject: `Preorder from ${formData.fullName}`,
